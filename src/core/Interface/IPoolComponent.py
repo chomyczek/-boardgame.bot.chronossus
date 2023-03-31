@@ -1,10 +1,8 @@
 import enum
 from abc import ABC, abstractmethod
 
-from src.core.Interface.IRewardedComponent import IRewardedComponent
 
-
-class IPoolComponent(ABC, IRewardedComponent):
+class IPoolComponent(ABC):
     _points: int
     _pool: dict[enum, int]
     _pool_type: enum

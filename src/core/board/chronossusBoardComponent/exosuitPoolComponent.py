@@ -14,6 +14,7 @@ class ExosuitPoolComponent:
         self.rule_max_exosuits = 6
         self.rule_guaranteed_exosuits = 3
         self._powered_up_exosuits = 0
+        self._energy_cores_pool = []
         # Fill it with 5 Energy Core tokens and 5 Exhausted Energy Core tokens
         for i in range(5):
             self.add_energy_core()
