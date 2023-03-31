@@ -1,3 +1,4 @@
+from src.core.board.chronossusBoardComponents.breakthroughComponent import BreakthroughComponent
 from src.core.board.chronossusBoardComponents.buildingsComponent import BuildingComponent
 
 
@@ -16,3 +17,4 @@ class ChronossusBoard:
 
     def __init__(self):
         self._buildings = BuildingComponent()
+        self._breakthroughs_pool = BreakthroughComponent()

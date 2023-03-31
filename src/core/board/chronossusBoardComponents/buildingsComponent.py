@@ -16,29 +16,29 @@ class BuildingComponent:
     _pools: dict[BuildingType, list[int]] = {}
 
     def __init__(self):
-        self._pools[BuildingType.POWER_PLANT] = []
-        self._pools[BuildingType.FACTORY] = []
-        self._pools[BuildingType.LIFE_SUPPORT] = []
-        self._pools[BuildingType.LAB] = []
-        self._pools[BuildingType.SUPER_PROJECT] = []
-        self._pools[BuildingType.ANOMALY] = []
+        for building in BuildingType:
+            self._pools[building] = []
 
-    def add(self, building_type: BuildingType, points: int):
+    def add(self, building_type: BuildingType, points: int) -> None:
         pool = self._pools[building_type]
         if len(pool) >= self.MAX_BUILDINGS_IN_POOL:
             raise ActionFailedException(f'Pool of {building_type.value} is already full.')
         pool.append(points)
 
-    def remove_anomaly(self):
+    def remove_anomaly(self) -> None:
         anomaly_pool = self._pools[BuildingType.ANOMALY]
         if not any(anomaly_pool):
             raise ActionFailedException(f'Pool of {BuildingType.ANOMALY} is empty.')
         anomaly_pool.pop()
 
-    def sum_victory_points(self) -> int:
+    def get_victory_points(self) -> int:
+        """
+        Sum value of all collected buildings.
+        :return: Victory points value from buildings pools.
+        """
         points = 0
         for pool in self._pools.values():
-            points = sum(pool, sum)
+            points = sum(pool, points)
         return points
 
 

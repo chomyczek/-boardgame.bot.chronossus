@@ -10,7 +10,7 @@ class BuildingType(Enum):
     ANOMALY = 'Anomaly'
 
 
-class BreakthroughsType(Enum):
+class BreakthroughType(Enum):
     SQUARE = 'Square'
     TRIANGLE = 'Triangle'
     CIRCLE = 'Circle'
