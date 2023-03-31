@@ -1,9 +1,12 @@
 class TimeTravelTrackComponent:
-    MAX_STEPS: int = 6
-    _step: int = 0
+    RULE_MAX_STEPS: int = 6
+    _step: int
+
+    def __init__(self):
+        self._step = 0
 
     def move(self):
-        if self._step < self.MAX_STEPS:
+        if self._step < self.RULE_MAX_STEPS:
             self._step += 1
 
     def get_victory_points(self) -> int:

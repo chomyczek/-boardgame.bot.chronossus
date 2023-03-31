@@ -8,3 +8,7 @@ class ActionFailedException(Exception):
 
 class ParadoxExceededException(Exception):
     pass
+
+
+class PassActionsException(Exception):
+    pass

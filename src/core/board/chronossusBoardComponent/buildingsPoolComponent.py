@@ -4,16 +4,17 @@ from src.core.exception import ActionFailedException
 
 
 class BuildingPoolComponent:
-    MAX_BUILDINGS_IN_POOL: int = 3
-    _pools: dict[BuildingType, list[BuildingTile]] = {}
+    RULE_MAX_BUILDINGS_IN_POOL: int = 3
+    _pools: dict[BuildingType, list[BuildingTile]]
 
     def __init__(self):
+        self._pools = {}
         for building in BuildingType:
             self._pools[building] = []
 
     def add(self, building_type: BuildingType, points: int) -> None:
         pool = self._pools[building_type]
-        if len(pool) >= self.MAX_BUILDINGS_IN_POOL:
+        if len(pool) >= self.RULE_MAX_BUILDINGS_IN_POOL:
             raise ActionFailedException(f'Pool of {building_type.value} is already full.')
 
         pool.append(BuildingTile(building_type, points))

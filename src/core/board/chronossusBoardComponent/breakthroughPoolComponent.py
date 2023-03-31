@@ -3,9 +3,10 @@ from src.core.exception import ActionFailedException
 
 
 class BreakthroughPoolComponent:
-    _pool: dict[BreakthroughType, int] = {}
+    _pool: dict[BreakthroughType, int]
 
     def __init__(self):
+        self._pool = {}
         for breakthrough in BreakthroughType:
             self._pool[breakthrough] = 0
 
