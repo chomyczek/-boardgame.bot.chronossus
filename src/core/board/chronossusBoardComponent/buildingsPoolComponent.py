@@ -1,6 +1,6 @@
 from src.core.base.component.BuildingTile import BuildingTile
 from src.core.base.type import BuildingType
-from src.core.exception import ActionFailedException
+from src.core.util.exception import ActionFailedException
 
 
 class BuildingPoolComponent:

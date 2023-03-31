@@ -1,3 +1,4 @@
+from src.core.board.chronossusBoardComponent.WorkerPoolComponent import WorkerPoolComponent
 from src.core.board.chronossusBoardComponent.breakthroughPoolComponent import BreakthroughPoolComponent
 from src.core.board.chronossusBoardComponent.buildingsPoolComponent import BuildingPoolComponent
 from src.core.board.chronossusBoardComponent.exosuitPoolComponent import ExosuitPoolComponent
@@ -6,10 +7,9 @@ from src.core.board.chronossusBoardComponent.timeTravelTrackComponent import Tim
 
 
 class ChronossusBoard:
-    MAX_EXOSUITS: int = 6
     _actions = None
     _resources_pool = None
-    _workers_pool = None
+    _workers_pool: WorkerPoolComponent
     _exosuits_pool: ExosuitPoolComponent
     _paradox_track: ParadoxTrackComponent
     _time_travel_track: TimeTravelTrackComponent

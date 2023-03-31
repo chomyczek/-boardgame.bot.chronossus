@@ -1,5 +1,5 @@
 from src.core.base.type import BreakthroughType
-from src.core.exception import ActionFailedException
+from src.core.util.exception import ActionFailedException
 
 
 class BreakthroughPoolComponent:

@@ -1,4 +1,4 @@
-from src.core.exception import ParadoxExceededException
+from src.core.util.exception import ParadoxExceededException
 
 
 class ParadoxTrackComponent:
@@ -13,10 +13,3 @@ class ParadoxTrackComponent:
         if self._step > self.RULE_MAX_STEPS:
             self._step = 0
             raise ParadoxExceededException()
-
-    def get_victory_points(self) -> int:
-        """
-        There is no points for paradoxes.
-        :return: Always returns 0
-        """
-        return 0

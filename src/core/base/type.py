@@ -14,3 +14,10 @@ class BreakthroughType(Enum):
     SQUARE = 'Square'
     TRIANGLE = 'Triangle'
     CIRCLE = 'Circle'
+
+
+class WorkerType(Enum):
+    SCIENTIST = 'Scientist'
+    ENGINEER = 'Engineer'
+    ADMINISTRATOR = 'Administrator'
+    GENIUS = 'Genius'
