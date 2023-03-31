@@ -1,5 +1,5 @@
 from src.core.interface.IRewardedComponent import IRewardedComponent
-from src.core.base.component.BuildingTile import BuildingTile
+from src.core.base.component.buildingTile import BuildingTile
 from src.core.base.type import BuildingType
 from src.core.util.exception import ActionFailedException
 

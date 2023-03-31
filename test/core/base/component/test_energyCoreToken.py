@@ -1,4 +1,4 @@
-from src.core.base.component.EnergyCoreToken import EnergyCoreToken
+from src.core.base.component.energyCoreToken import EnergyCoreToken
 
 
 class TestEnergyCoreToken:

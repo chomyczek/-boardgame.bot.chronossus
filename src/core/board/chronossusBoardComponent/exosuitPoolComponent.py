@@ -1,6 +1,6 @@
 from random import shuffle
 
-from src.core.base.component.EnergyCoreToken import EnergyCoreToken
+from src.core.base.component.energyCoreToken import EnergyCoreToken
 from src.core.util.exception import PassActionsException
 
 
