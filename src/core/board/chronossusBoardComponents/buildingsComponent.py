@@ -1,19 +1,11 @@
-
-from enum import Enum
-
+from src.core.base.component.BuildingTile import BuildingTile
 from src.core.base.type import BuildingType
 from src.core.exception import ActionFailedException
 
 
 class BuildingComponent:
-
-    class Building:
-        def __init__(self, building_type: int, points: int):
-            self.type = building_type
-            self.points = points
-
     MAX_BUILDINGS_IN_POOL: int = 3
-    _pools: dict[BuildingType, list[int]] = {}
+    _pools: dict[BuildingType, list[BuildingTile]] = {}
 
     def __init__(self):
         for building in BuildingType:
@@ -23,7 +15,8 @@ class BuildingComponent:
         pool = self._pools[building_type]
         if len(pool) >= self.MAX_BUILDINGS_IN_POOL:
             raise ActionFailedException(f'Pool of {building_type.value} is already full.')
-        pool.append(points)
+
+        pool.append(BuildingTile(building_type, points))
 
     def remove_anomaly(self) -> None:
         anomaly_pool = self._pools[BuildingType.ANOMALY]
@@ -36,10 +29,11 @@ class BuildingComponent:
         Sum value of all collected buildings.
         :return: Victory points value from buildings pools.
         """
-        points = 0
-        for pool in self._pools.values():
-            points = sum(pool, points)
-        return points
+        points_sum = 0
+        for tiles in self._pools.values():
+            points = [t.points for t in tiles]
+            points_sum = sum(points, points_sum)
+        return points_sum
 
 
 
