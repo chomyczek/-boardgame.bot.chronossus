@@ -5,13 +5,11 @@ from src.core.board.chronossusBoardComponent.timeTravelTrackComponent import Tim
 
 
 class ChronossusBoard:
-    MAX_WARP_TILES: int = 8
     MAX_EXOSUITS: int = 6
     _actions = None
     _resources_pool = None
     _workers_pool = None
     _exosuits_pool = None
-    _warp_tiles = None
     _paradox_track: ParadoxTrackComponent = None
     _time_travel_track: TimeTravelTrackComponent = None
     _breakthroughs_pool: BreakthroughPoolComponent = None
