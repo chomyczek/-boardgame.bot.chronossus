@@ -1,5 +1,6 @@
 from src.core.board.chronossusBoardComponent.breakthroughPoolComponent import BreakthroughPoolComponent
 from src.core.board.chronossusBoardComponent.buildingsPoolComponent import BuildingPoolComponent
+from src.core.board.chronossusBoardComponent.timeTravelTrackComponent import TimeTravelTrackComponent
 
 
 class ChronossusBoard:
@@ -11,10 +12,11 @@ class ChronossusBoard:
     _exosuits_pool = None
     _warp_tiles = None
     _paradox_track = None
-    _time_travel_track = None
-    _breakthroughs_pool = None
+    _time_travel_track: TimeTravelTrackComponent = None
+    _breakthroughs_pool: BreakthroughPoolComponent = None
     _buildings_pool: BuildingPoolComponent = None
 
     def __init__(self):
         self._buildings_pool = BuildingPoolComponent()
         self._breakthroughs_pool = BreakthroughPoolComponent()
+        self._time_travel_track = TimeTravelTrackComponent()
