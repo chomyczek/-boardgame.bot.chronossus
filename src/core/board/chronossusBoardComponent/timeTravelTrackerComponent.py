@@ -1,5 +1,5 @@
-from src.core.Interface.IRewardedComponent import IRewardedComponent
-from src.core.Interface.ITrackerComponent import ITrackerComponent
+from src.core.interface.IRewardedComponent import IRewardedComponent
+from src.core.interface.ITrackerComponent import ITrackerComponent
 
 
 class TimeTravelTrackerComponent(ITrackerComponent, IRewardedComponent):

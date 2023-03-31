@@ -1,7 +1,7 @@
 import enum
 
-from src.core.Interface.IPoolComponent import IPoolComponent
-from src.core.Interface.IRewardedComponent import IRewardedComponent
+from src.core.interface.IPoolComponent import IPoolComponent
+from src.core.interface.IRewardedComponent import IRewardedComponent
 from src.core.base.type import BreakthroughType
 from src.core.util.exception import ActionFailedException
 
