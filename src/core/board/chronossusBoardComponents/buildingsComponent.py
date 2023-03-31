@@ -33,12 +33,19 @@ class BuildingComponent:
     def add(self, building_type: BuildingType, points: int):
         pool = self._pools[building_type]
         if len(pool) >= self.MAX_BUILDINGS_IN_POOL:
-            raise ActionFailedException
+            raise ActionFailedException()
         pool.push(points)
+
+    def remove_anomaly(self):
+        anomaly_pool = self._pools[self.BuildingType.ANOMALY]
+        if not any(anomaly_pool):
+            raise ActionFailedException()
+        anomaly_pool.pop()
+
 
     def sum_victory_points(self) -> int:
         points = 0
-        for pool in self._pools:
+        for pool in self._pools.values():
             points = sum(pool, sum)
         return points
 
