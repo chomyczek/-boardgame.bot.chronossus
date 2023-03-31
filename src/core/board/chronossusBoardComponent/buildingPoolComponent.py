@@ -1,9 +1,10 @@
+from src.core.Interface.IRewardedComponent import IRewardedComponent
 from src.core.base.component.BuildingTile import BuildingTile
 from src.core.base.type import BuildingType
 from src.core.util.exception import ActionFailedException
 
 
-class BuildingPoolComponent:
+class BuildingPoolComponent(IRewardedComponent):
     RULE_MAX_BUILDINGS_IN_POOL: int = 3
     _pools: dict[BuildingType, list[BuildingTile]]
 

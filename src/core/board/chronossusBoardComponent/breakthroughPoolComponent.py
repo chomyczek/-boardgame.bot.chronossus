@@ -1,17 +1,13 @@
+from src.core.Interface.IPoolComponent import IPoolComponent
+from src.core.Interface.IRewardedComponent import IRewardedComponent
 from src.core.base.type import BreakthroughType
 from src.core.util.exception import ActionFailedException
 
 
-class BreakthroughPoolComponent:
-    _pool: dict[BreakthroughType, int]
+class BreakthroughPoolComponent(IPoolComponent, IRewardedComponent):
 
     def __init__(self):
-        self._pool = {}
-        for breakthrough in BreakthroughType:
-            self._pool[breakthrough] = 0
-
-    def add(self, breakthrough: BreakthroughType) -> None:
-        self._pool[breakthrough] += 1
+        super().__init__(BreakthroughType, False)
 
     def remove_any(self) -> None:
         if all(c == 0 for c in self._pool.values()):
