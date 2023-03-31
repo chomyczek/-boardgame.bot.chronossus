@@ -21,3 +21,10 @@ class WorkerType(Enum):
     ENGINEER = 'Engineer'
     ADMINISTRATOR = 'Administrator'
     GENIUS = 'Genius'
+
+
+class ResourceType(Enum):
+    NEUTRONIUM = 'Neutronium'
+    URANIUM = 'Uranium'
+    GOLD = 'Gold'
+    TITANIUM = 'Titanium'
