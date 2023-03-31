@@ -4,3 +4,7 @@ class ActionFailedException(Exception):
 
     def __str__(self):
         return self.message
+
+
+class ParadoxExceededException(Exception):
+    pass
