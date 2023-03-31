@@ -2,7 +2,7 @@ from src.core.base.type import BreakthroughType
 from src.core.exception import ActionFailedException
 
 
-class BreakthroughComponent:
+class BreakthroughPoolComponent:
     _pool: dict[BreakthroughType, int] = {}
 
     def __init__(self):

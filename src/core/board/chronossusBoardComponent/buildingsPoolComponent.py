@@ -3,7 +3,7 @@ from src.core.base.type import BuildingType
 from src.core.exception import ActionFailedException
 
 
-class BuildingComponent:
+class BuildingPoolComponent:
     MAX_BUILDINGS_IN_POOL: int = 3
     _pools: dict[BuildingType, list[BuildingTile]] = {}
 
