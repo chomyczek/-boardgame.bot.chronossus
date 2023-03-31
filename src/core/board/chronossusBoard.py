@@ -23,4 +23,4 @@ class ChronossusBoard:
         self._time_travel_track = TimeTravelTrackerComponent()
         self._paradox_track = ParadoxTrackerComponent()
         self._exosuits_pool = ExosuitPoolComponent()
-        self._resources_pool = ResourcePoolComponent
+        self._resources_pool = ResourcePoolComponent()

@@ -8,7 +8,7 @@ class TimeTravelTrackerComponent(ITrackerComponent, IRewardedComponent):
         rule_max_steps = 6
         super().__init__(rule_max_steps)
 
-    def move(self):
+    def move(self) -> None:
         if self._step < self.rule_max_steps:
             self._step += 1
 

@@ -10,5 +10,5 @@ class ITrackerComponent(ABC):
         self._step = 0
 
     @abstractmethod
-    def move(self):
+    def move(self) -> None:
         raise NotImplementedError()

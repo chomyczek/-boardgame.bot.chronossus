@@ -18,7 +18,7 @@ class BuildingPoolComponent(IRewardedComponent):
         if len(pool) >= self.RULE_MAX_BUILDINGS_IN_POOL:
             raise ActionFailedException(f'Pool of {building_type.value} is already full.')
 
-        pool.append(BuildingTile(building_type, points))
+        pool.append(BuildingTile(building_type.value, points))
 
     def remove_anomaly(self) -> None:
         anomaly_pool = self._pools[BuildingType.ANOMALY]
