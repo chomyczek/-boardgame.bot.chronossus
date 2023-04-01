@@ -5,3 +5,4 @@ coverage
 isort
 pylint
 black
+flake8
