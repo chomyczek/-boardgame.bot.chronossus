@@ -6,22 +6,22 @@ from src.core.util.exception import ActionFailedException
 
 class BuildingPoolComponent(IRewardedComponent):
     RULE_MAX_BUILDINGS_IN_POOL: int = 3
-    _pools: dict[BuildingType, list[BuildingTile]]
+    _pool: dict[BuildingType, list[BuildingTile]]
 
     def __init__(self):
-        self._pools = {}
+        self._pool = {}
         for building in BuildingType:
-            self._pools[building] = []
+            self._pool[building] = []
 
-    def add(self, building_type: BuildingType, points: int) -> None:
-        pool = self._pools[building_type]
+    def add(self, building_type: BuildingType, score: int) -> None:
+        pool = self._pool[building_type]
         if len(pool) >= self.RULE_MAX_BUILDINGS_IN_POOL:
             raise ActionFailedException(f'Pool of {building_type.value} is already full.')
 
-        pool.append(BuildingTile(building_type.value, points))
+        pool.append(BuildingTile(building_type.value, score))
 
     def remove_anomaly(self) -> None:
-        anomaly_pool = self._pools[BuildingType.ANOMALY]
+        anomaly_pool = self._pool[BuildingType.ANOMALY]
         if not any(anomaly_pool):
             raise ActionFailedException(f'Pool of {BuildingType.ANOMALY} is empty.')
         anomaly_pool.pop()
@@ -32,8 +32,8 @@ class BuildingPoolComponent(IRewardedComponent):
         :return: Victory points value from buildings pools.
         """
         points_sum = 0
-        for tiles in self._pools.values():
-            points = [t.points for t in tiles]
+        for tiles in self._pool.values():
+            points = [t.score for t in tiles]
             points_sum = sum(points, points_sum)
         return points_sum
 

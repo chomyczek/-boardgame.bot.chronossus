@@ -8,4 +8,4 @@ class TestBuildingTile:
         building_type = BuildingType.POWER_PLANT
         building = BuildingTile(building_type, score)
         assert building.type == building_type
-        assert building.points == score
+        assert building.score == score

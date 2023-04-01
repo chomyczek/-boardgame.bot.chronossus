@@ -5,6 +5,7 @@ from src.core.util.exception import PassActionsException
 
 
 class ExosuitPoolComponent:
+    rule_num_of_draws = 3
     rule_max_exosuits: int
     rule_guaranteed_exosuits: int
     _energy_cores_pool: list[EnergyCoreToken]
@@ -40,10 +41,9 @@ class ExosuitPoolComponent:
         self._powered_up_exosuits = min(drawn, self.rule_max_exosuits)
 
     def _draw_core_from_pool(self) -> int:
-        rule_num_of_draws = 3
         if not any(self._energy_cores_pool):
             return 0
-        num_of_draws = min(rule_num_of_draws, len(self._energy_cores_pool))
+        num_of_draws = min(self.rule_num_of_draws, len(self._energy_cores_pool))
         shuffle(self._energy_cores_pool)
         exhausted_core_drawn = 0
         for i in range(num_of_draws):

@@ -7,19 +7,16 @@ class IPoolComponent(ABC):
     _pool: dict[enum, int]
     _pool_type: enum
 
-    def __init__(self, pool_type: enum, check_for_set=True):
+    def __init__(self, pool_type: enum):
         self._points = 0
         self._pool = {}
         self._pool_type = pool_type
-        self._check_for_set = check_for_set
         for member in self._pool_type:
             self._pool[member] = 0
 
     @abstractmethod
-    def add(self, member: enum.Enum):
+    def add(self, member: enum.Enum) -> None:
         self._pool[member] += 1
-        if self._check_for_set:
-            self.check_for_completed_set()
 
     def check_for_completed_set(self) -> None:
         """

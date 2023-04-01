@@ -10,6 +10,7 @@ class ResourcePoolComponent(IPoolComponent, IRewardedComponent):
 
     def add(self, resource: ResourceType):
         super().add(resource)
+        super().check_for_completed_set()
 
     def __init__(self):
         super().__init__(ResourceType)
