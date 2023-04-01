@@ -5,6 +5,10 @@ from src.core.util.exception import ActionFailedException
 
 
 class BuildingPoolComponent(IRewardedComponent):
+    """
+    Buildings and anomaly pool component for chronossus board
+    """
+
     RULE_MAX_BUILDINGS_IN_POOL: int = 3
     _pool: dict[BuildingType, list[BuildingTile]]
 

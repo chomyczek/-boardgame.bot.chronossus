@@ -2,6 +2,10 @@ from abc import ABC, abstractmethod
 
 
 class ITrackerComponent(ABC):
+    """
+    Interface for trackers on boards
+    """
+
     rule_max_steps: int
     _step: int
 

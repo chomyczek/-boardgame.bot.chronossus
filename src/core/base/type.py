@@ -2,6 +2,10 @@ from enum import Enum
 
 
 class BuildingType(Enum):
+    """
+    Enum class for building types
+    """
+
     POWER_PLANT = "Power plant"
     FACTORY = "Factory"
     LIFE_SUPPORT = "Life support"
@@ -11,12 +15,20 @@ class BuildingType(Enum):
 
 
 class BreakthroughType(Enum):
+    """
+    Enum class for breakthrough types
+    """
+
     SQUARE = "Square"
     TRIANGLE = "Triangle"
     CIRCLE = "Circle"
 
 
 class WorkerType(Enum):
+    """
+    Enum class for worker types
+    """
+
     SCIENTIST = "Scientist"
     ENGINEER = "Engineer"
     ADMINISTRATOR = "Administrator"
@@ -24,6 +36,10 @@ class WorkerType(Enum):
 
 
 class ResourceType(Enum):
+    """
+    Enum class for resources types
+    """
+
     NEUTRONIUM = "Neutronium"
     URANIUM = "Uranium"
     GOLD = "Gold"

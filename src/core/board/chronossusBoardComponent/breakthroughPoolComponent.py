@@ -5,6 +5,10 @@ from src.core.util.exception import ActionFailedException
 
 
 class BreakthroughPoolComponent(IPoolComponent, IRewardedComponent):
+    """
+    Breakthrough pool component for chronossus board
+    """
+
     def add(self, breakthrough: BreakthroughType):
         super().add(breakthrough)
 

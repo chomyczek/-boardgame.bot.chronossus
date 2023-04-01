@@ -5,6 +5,10 @@ from src.core.util.exception import ActionFailedException
 
 
 class ResourcePoolComponent(IPoolComponent, IRewardedComponent):
+    """
+    resource pool component for chronossus board
+    """
+
     def add(self, resource: ResourceType):
         super().add(resource)
         super().check_for_completed_set()

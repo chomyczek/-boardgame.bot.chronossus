@@ -8,6 +8,10 @@ from src.core.board.chronossusBoardComponent.workerPoolComponent import WorkerPo
 
 
 class ChronossusBoard:
+    """
+    Chronossus board class.
+    """
+
     _actions = None
     _resources_pool: ResourcePoolComponent
     _workers_pool: WorkerPoolComponent

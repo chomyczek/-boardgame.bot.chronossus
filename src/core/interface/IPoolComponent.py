@@ -3,6 +3,10 @@ from abc import ABC, abstractmethod
 
 
 class IPoolComponent(ABC):
+    """
+    Interface for pool components on boards
+    """
+
     _score: int
     _pool: dict[enum, int]
     _pool_type: enum

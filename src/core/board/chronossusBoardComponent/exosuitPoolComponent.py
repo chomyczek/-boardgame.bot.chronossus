@@ -5,6 +5,10 @@ from src.core.util.exception import PassActionsException
 
 
 class ExosuitPoolComponent:
+    """
+    Exosuit pool component for chronossus board
+    """
+
     rule_num_of_draws = 3
     rule_max_exosuits: int
     rule_guaranteed_exosuits: int
