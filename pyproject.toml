@@ -1,0 +1,15 @@
+[tool.pytest.ini_options]
+pythonpath = [
+  "./"
+]
+
+[tool.black]
+target-version = ["py37"]
+exclude = ".venv"
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+skip_gitignore = true
+skip = ""

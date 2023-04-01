@@ -2,3 +2,7 @@ pytest
 pytest-mock
 pytest-cov
 coverage
+isort
+pylint
+black
+flake8
