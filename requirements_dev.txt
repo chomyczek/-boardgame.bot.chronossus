@@ -1,3 +1,4 @@
 pytest
-coverage
+pytest-mock
 pytest-cov
+coverage
