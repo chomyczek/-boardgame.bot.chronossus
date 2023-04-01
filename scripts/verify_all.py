@@ -109,6 +109,16 @@ def run_pip_install():
     return handle_common_cmd(cmd)
 
 
+def run_pip_upgrade():
+    """
+    upgrade pip version
+    :return: Return code
+    """
+    print("Running pip upgrade ...")
+    cmd = f"{python} -m pip install --upgrade pip"
+    return handle_common_cmd(cmd)
+
+
 def run_flake8():
     """
     Check PEP8
@@ -139,7 +149,6 @@ def found_error_in(_rc):
     :param _rc: Return code to check
     :return: True if return code is none-zero
     """
-
     return _rc != 0
 
 
@@ -178,7 +187,7 @@ if __name__ == "__main__":
     rc = 0
     summary = []
     print("Running script verify_all.py ...")
-    if found_error_in(run_pip_install()):
+    if found_error_in(run_pip_upgrade()) or found_error_in(run_pip_install()):
         print_separator()
         print("There was problem with pip command!")
         sys.exit(1)
