@@ -25,17 +25,25 @@ class TestWorkerPoolComponent:
         for worker in WorkerType:
             assert worker_component._pool[worker] == expected
 
-    @pytest.mark.parametrize("workers,expected_vp", [([], 0), ([WorkerType.ADMINISTRATOR], 1),
-                                                     ([WorkerType.ADMINISTRATOR, WorkerType.ADMINISTRATOR,
-                                                       WorkerType.ENGINEER, WorkerType.SCIENTIST], 4),
-                                                     (
-                                                             [WorkerType.ADMINISTRATOR, WorkerType.SCIENTIST,
-                                                              WorkerType.ENGINEER, WorkerType.GENIUS],
-                                                             9),
-                                                     (
-                                                             [WorkerType.ADMINISTRATOR, WorkerType.SCIENTIST,
-                                                              WorkerType.ENGINEER, WorkerType.GENIUS,
-                                                              WorkerType.SCIENTIST], 10)])
+    @pytest.mark.parametrize(
+        "workers,expected_vp",
+        [
+            ([], 0),
+            ([WorkerType.ADMINISTRATOR], 1),
+            ([WorkerType.ADMINISTRATOR, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER, WorkerType.SCIENTIST], 4),
+            ([WorkerType.ADMINISTRATOR, WorkerType.SCIENTIST, WorkerType.ENGINEER, WorkerType.GENIUS], 9),
+            (
+                [
+                    WorkerType.ADMINISTRATOR,
+                    WorkerType.SCIENTIST,
+                    WorkerType.ENGINEER,
+                    WorkerType.GENIUS,
+                    WorkerType.SCIENTIST,
+                ],
+                10,
+            ),
+        ],
+    )
     def test_get_victory_points(self, workers, expected_vp):
         worker_component = WorkerPoolComponent()
         for worker in workers:

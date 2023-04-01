@@ -1,2 +1,2 @@
-if __name__ == '__main__':
-    print('Chronossus will raise..')
+if __name__ == "__main__":
+    print("Chronossus will raise..")

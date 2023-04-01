@@ -2,6 +2,10 @@ from abc import ABC, abstractmethod
 
 
 class ITrackerComponent(ABC):
+    """
+    Interface for trackers on boards
+    """
+
     rule_max_steps: int
     _step: int
 
@@ -11,4 +15,7 @@ class ITrackerComponent(ABC):
 
     @abstractmethod
     def move(self) -> None:
+        """
+        Abstract method of move
+        """
         raise NotImplementedError()

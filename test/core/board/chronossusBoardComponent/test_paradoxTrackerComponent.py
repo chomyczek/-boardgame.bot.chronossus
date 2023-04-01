@@ -5,7 +5,6 @@ from src.core.util.exception import ParadoxExceededException
 
 
 class TestParadoxTrackerComponent:
-
     def test_move(self):
         paradox_tracker_component = ParadoxTrackerComponent()
         expected_step = paradox_tracker_component._step + 1

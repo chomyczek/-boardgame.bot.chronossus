@@ -3,6 +3,9 @@ from src.core.util.exception import ParadoxExceededException
 
 
 class ParadoxTrackerComponent(ITrackerComponent):
+    """
+    Paradox tracker component for chronossus board
+    """
 
     def __init__(self):
         rule_max_steps = 3

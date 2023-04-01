@@ -8,10 +8,17 @@ from src.core.util.exception import ActionFailedException
 
 
 class TestBuildingPoolComponent:
-    @pytest.mark.parametrize("building_type,score",
-                             [(BuildingType.ANOMALY, -5), (BuildingType.POWER_PLANT, 1), (BuildingType.LAB, 2),
-                              (BuildingType.FACTORY, 3), (BuildingType.LIFE_SUPPORT, 8),
-                              (BuildingType.SUPER_PROJECT, 7)])
+    @pytest.mark.parametrize(
+        "building_type,score",
+        [
+            (BuildingType.ANOMALY, -5),
+            (BuildingType.POWER_PLANT, 1),
+            (BuildingType.LAB, 2),
+            (BuildingType.FACTORY, 3),
+            (BuildingType.LIFE_SUPPORT, 8),
+            (BuildingType.SUPER_PROJECT, 7),
+        ],
+    )
     def test_add(self, building_type, score):
         building_pool_component = BuildingPoolComponent()
         building_pool_component.add(building_type, score)
@@ -23,16 +30,24 @@ class TestBuildingPoolComponent:
             if building == building_type:
                 assert building_pool_component._pool[building][0].score == score
 
-    @pytest.mark.parametrize("building_type",
-                             [BuildingType.ANOMALY, BuildingType.LAB, BuildingType.POWER_PLANT, BuildingType.FACTORY,
-                              BuildingType.LIFE_SUPPORT, BuildingType.SUPER_PROJECT])
+    @pytest.mark.parametrize(
+        "building_type",
+        [
+            BuildingType.ANOMALY,
+            BuildingType.LAB,
+            BuildingType.POWER_PLANT,
+            BuildingType.FACTORY,
+            BuildingType.LIFE_SUPPORT,
+            BuildingType.SUPER_PROJECT,
+        ],
+    )
     def test_add_to_full_pool(self, building_type):
         building_pool_component = BuildingPoolComponent()
         for i in range(building_pool_component.RULE_MAX_BUILDINGS_IN_POOL):
             building_pool_component.add(building_type, 1)
         with pytest.raises(ActionFailedException) as e:
             building_pool_component.add(building_type, 2)
-        assert str(e.value) == f'Pool of {building_type.value} is already full.'
+        assert str(e.value) == f"Pool of {building_type.value} is already full."
 
     @pytest.mark.parametrize("pool_count", range(1, BuildingPoolComponent.RULE_MAX_BUILDINGS_IN_POOL + 1))
     def test_remove_anomaly(self, pool_count: int):
@@ -46,11 +61,16 @@ class TestBuildingPoolComponent:
         building_pool_component = BuildingPoolComponent()
         with pytest.raises(ActionFailedException) as e:
             building_pool_component.remove_anomaly()
-        assert str(e.value) == f'Pool of {BuildingType.ANOMALY.value} is empty.'
+        assert str(e.value) == f"Pool of {BuildingType.ANOMALY.value} is empty."
 
-    @pytest.mark.parametrize("pool_count,building_type", list(
-        itertools.product(range(BuildingPoolComponent.RULE_MAX_BUILDINGS_IN_POOL + 1),
-                          [building for building in BuildingType])))
+    @pytest.mark.parametrize(
+        "pool_count,building_type",
+        list(
+            itertools.product(
+                range(BuildingPoolComponent.RULE_MAX_BUILDINGS_IN_POOL + 1), [building for building in BuildingType]
+            )
+        ),
+    )
     def test_get_victory_points_one_type(self, pool_count: int, building_type):
         vp = 2
         building_pool_component = BuildingPoolComponent()

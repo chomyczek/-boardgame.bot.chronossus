@@ -7,7 +7,6 @@ from src.core.util.exception import PassActionsException
 
 
 class TestExosuitPoolComponent:
-
     def test_trigger_impact(self):
         rule_max_exosuits_before_impact = 6
         rule_guaranteed_exosuits_before_impact = 3
@@ -50,7 +49,7 @@ class TestExosuitPoolComponent:
 
     @pytest.mark.parametrize("trigger_impact", [True, False])
     def test_power_up_exosuits_only_normal_cores(self, trigger_impact, mocker):
-        mock_shuffle = mocker.patch('src.core.board.chronossusBoardComponent.exosuitPoolComponent.shuffle')
+        mock_shuffle = mocker.patch("src.core.board.chronossusBoardComponent.exosuitPoolComponent.shuffle")
         exosuit_pool_component = ExosuitPoolComponent()
         exosuit_pool_component._energy_cores_pool = []
         for i in range(10):
@@ -61,11 +60,13 @@ class TestExosuitPoolComponent:
         assert exosuit_pool_component._powered_up_exosuits == exosuit_pool_component.rule_max_exosuits
         assert mock_shuffle.called
 
-    @pytest.mark.parametrize("trigger_impact,exhausted_count", list(
-        itertools.product([True, False], range(1, ExosuitPoolComponent.rule_num_of_draws + 1))))
+    @pytest.mark.parametrize(
+        "trigger_impact,exhausted_count",
+        list(itertools.product([True, False], range(1, ExosuitPoolComponent.rule_num_of_draws + 1))),
+    )
     def test_power_up_exosuits_exhausted_drawn(self, trigger_impact, exhausted_count, mocker):
         exhausted_not_drawn = 2
-        mocker.patch('src.core.board.chronossusBoardComponent.exosuitPoolComponent.shuffle')
+        mocker.patch("src.core.board.chronossusBoardComponent.exosuitPoolComponent.shuffle")
         exosuit_pool_component = ExosuitPoolComponent()
         exosuit_pool_component._energy_cores_pool = []
         for i in range(exhausted_not_drawn):
@@ -80,13 +81,18 @@ class TestExosuitPoolComponent:
 
         exhausted_left = len([c for c in exosuit_pool_component._energy_cores_pool if c.is_exhausted])
         expected_powered_up_exosuits = min(
-            exosuit_pool_component.rule_num_of_draws + exosuit_pool_component.rule_guaranteed_exosuits - exhausted_count,
-            exosuit_pool_component.rule_max_exosuits)
+            exosuit_pool_component.rule_num_of_draws
+            + exosuit_pool_component.rule_guaranteed_exosuits
+            - exhausted_count,
+            exosuit_pool_component.rule_max_exosuits,
+        )
         assert exosuit_pool_component._powered_up_exosuits == expected_powered_up_exosuits
         assert exhausted_left == exhausted_not_drawn + 1
 
-    @pytest.mark.parametrize("trigger_impact,core_pool_count",
-                             list(itertools.product([True, False], range(ExosuitPoolComponent.rule_num_of_draws))))
+    @pytest.mark.parametrize(
+        "trigger_impact,core_pool_count",
+        list(itertools.product([True, False], range(ExosuitPoolComponent.rule_num_of_draws))),
+    )
     def test_power_up_exosuits_not_enough_tokens(self, trigger_impact, core_pool_count):
         exosuit_pool_component = ExosuitPoolComponent()
         exosuit_pool_component._energy_cores_pool = []
@@ -95,5 +101,7 @@ class TestExosuitPoolComponent:
         if trigger_impact:
             exosuit_pool_component.trigger_impact()
         exosuit_pool_component.power_up_exosuits()
-        assert exosuit_pool_component._powered_up_exosuits == \
-               exosuit_pool_component.rule_guaranteed_exosuits + core_pool_count
+        assert (
+            exosuit_pool_component._powered_up_exosuits
+            == exosuit_pool_component.rule_guaranteed_exosuits + core_pool_count
+        )

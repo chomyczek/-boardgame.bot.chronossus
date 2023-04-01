@@ -1,13 +1,17 @@
-from src.core.board.chronossusBoardComponent.resourcePoolComponent import ResourcePoolComponent
-from src.core.board.chronossusBoardComponent.workerPoolComponent import WorkerPoolComponent
 from src.core.board.chronossusBoardComponent.breakthroughPoolComponent import BreakthroughPoolComponent
 from src.core.board.chronossusBoardComponent.buildingPoolComponent import BuildingPoolComponent
 from src.core.board.chronossusBoardComponent.exosuitPoolComponent import ExosuitPoolComponent
 from src.core.board.chronossusBoardComponent.paradoxTrackerComponent import ParadoxTrackerComponent
+from src.core.board.chronossusBoardComponent.resourcePoolComponent import ResourcePoolComponent
 from src.core.board.chronossusBoardComponent.timeTravelTrackerComponent import TimeTravelTrackerComponent
+from src.core.board.chronossusBoardComponent.workerPoolComponent import WorkerPoolComponent
 
 
 class ChronossusBoard:
+    """
+    Chronossus board class.
+    """
+
     _actions = None
     _resources_pool: ResourcePoolComponent
     _workers_pool: WorkerPoolComponent

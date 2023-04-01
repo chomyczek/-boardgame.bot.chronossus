@@ -3,6 +3,9 @@ from src.core.interface.ITrackerComponent import ITrackerComponent
 
 
 class TimeTravelTrackerComponent(ITrackerComponent, IRewardedComponent):
+    """
+    Time travel tracker component for chronossus board
+    """
 
     def __init__(self):
         rule_max_steps = 6

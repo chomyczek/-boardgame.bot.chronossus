@@ -1,12 +1,13 @@
-import enum
-
+from src.core.base.type import ResourceType
 from src.core.interface.IPoolComponent import IPoolComponent
 from src.core.interface.IRewardedComponent import IRewardedComponent
-from src.core.base.type import ResourceType
 from src.core.util.exception import ActionFailedException
 
 
 class ResourcePoolComponent(IPoolComponent, IRewardedComponent):
+    """
+    resource pool component for chronossus board
+    """
 
     def add(self, resource: ResourceType):
         super().add(resource)
@@ -16,8 +17,12 @@ class ResourcePoolComponent(IPoolComponent, IRewardedComponent):
         super().__init__(ResourceType)
 
     def remove(self, resource: ResourceType) -> None:
+        """
+        Remove one resource of provided type from the pool
+        :param resource: Resource type to remove
+        """
         if self._pool[resource] == 0:
-            raise ActionFailedException(f'There is no {resource.value} resources.')
+            raise ActionFailedException(f"There is no {resource.value} resources.")
         self._pool[resource] -= 1
 
     def get_victory_points(self) -> int:

@@ -3,6 +3,10 @@ from abc import ABC, abstractmethod
 
 
 class IPoolComponent(ABC):
+    """
+    Interface for pool components on boards
+    """
+
     _score: int
     _pool: dict[enum, int]
     _pool_type: enum
@@ -16,6 +20,10 @@ class IPoolComponent(ABC):
 
     @abstractmethod
     def add(self, member: enum.Enum) -> None:
+        """
+        Abstract method of adding 1 component to subtype of pool
+        :param member: Subtype od the pool
+        """
         self._pool[member] += 1
 
     def check_for_completed_set(self) -> None:
@@ -26,6 +34,3 @@ class IPoolComponent(ABC):
             self._score += 5
             for member in self._pool_type:
                 self._pool[member] -= 1
-
-
-
