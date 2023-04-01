@@ -1,5 +1,3 @@
-import enum
-
 from src.core.base.type import ResourceType
 from src.core.interface.IPoolComponent import IPoolComponent
 from src.core.interface.IRewardedComponent import IRewardedComponent
