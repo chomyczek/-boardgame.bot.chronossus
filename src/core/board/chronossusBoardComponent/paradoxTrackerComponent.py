@@ -3,7 +3,6 @@ from src.core.util.exception import ParadoxExceededException
 
 
 class ParadoxTrackerComponent(ITrackerComponent):
-
     def __init__(self):
         rule_max_steps = 3
         super().__init__(rule_max_steps)

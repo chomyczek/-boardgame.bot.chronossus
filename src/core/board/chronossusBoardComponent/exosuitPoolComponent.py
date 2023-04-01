@@ -54,7 +54,3 @@ class ExosuitPoolComponent:
         if exhausted_core_drawn >= 1:
             self.add_exhausted_energy_core()
         return num_of_draws - exhausted_core_drawn
-
-
-
-

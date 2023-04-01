@@ -26,6 +26,3 @@ class IPoolComponent(ABC):
             self._score += 5
             for member in self._pool_type:
                 self._pool[member] -= 1
-
-
-

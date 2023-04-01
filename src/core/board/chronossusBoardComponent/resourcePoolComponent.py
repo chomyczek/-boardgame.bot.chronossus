@@ -1,13 +1,12 @@
 import enum
 
+from src.core.base.type import ResourceType
 from src.core.interface.IPoolComponent import IPoolComponent
 from src.core.interface.IRewardedComponent import IRewardedComponent
-from src.core.base.type import ResourceType
 from src.core.util.exception import ActionFailedException
 
 
 class ResourcePoolComponent(IPoolComponent, IRewardedComponent):
-
     def add(self, resource: ResourceType):
         super().add(resource)
         super().check_for_completed_set()
@@ -17,7 +16,7 @@ class ResourcePoolComponent(IPoolComponent, IRewardedComponent):
 
     def remove(self, resource: ResourceType) -> None:
         if self._pool[resource] == 0:
-            raise ActionFailedException(f'There is no {resource.value} resources.')
+            raise ActionFailedException(f"There is no {resource.value} resources.")
         self._pool[resource] -= 1
 
     def get_victory_points(self) -> int:

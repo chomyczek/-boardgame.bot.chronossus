@@ -41,19 +41,27 @@ class TestResourcePoolComponent:
         resource_component = ResourcePoolComponent()
         with pytest.raises(ActionFailedException) as e:
             resource_component.remove(resource_type)
-        assert str(e.value) == f'There is no {resource_type.value} resources.'
+        assert str(e.value) == f"There is no {resource_type.value} resources."
 
-    @pytest.mark.parametrize("resources,expected_vp", [([], 0), ([ResourceType.TITANIUM], 0),
-                                                       ([ResourceType.TITANIUM, ResourceType.TITANIUM,
-                                                         ResourceType.NEUTRONIUM, ResourceType.URANIUM], 0),
-                                                       (
-                                                               [ResourceType.TITANIUM, ResourceType.URANIUM,
-                                                                ResourceType.NEUTRONIUM, ResourceType.GOLD],
-                                                               5),
-                                                       (
-                                                               [ResourceType.TITANIUM, ResourceType.URANIUM,
-                                                                ResourceType.NEUTRONIUM, ResourceType.GOLD,
-                                                                ResourceType.URANIUM], 5)])
+    @pytest.mark.parametrize(
+        "resources,expected_vp",
+        [
+            ([], 0),
+            ([ResourceType.TITANIUM], 0),
+            ([ResourceType.TITANIUM, ResourceType.TITANIUM, ResourceType.NEUTRONIUM, ResourceType.URANIUM], 0),
+            ([ResourceType.TITANIUM, ResourceType.URANIUM, ResourceType.NEUTRONIUM, ResourceType.GOLD], 5),
+            (
+                [
+                    ResourceType.TITANIUM,
+                    ResourceType.URANIUM,
+                    ResourceType.NEUTRONIUM,
+                    ResourceType.GOLD,
+                    ResourceType.URANIUM,
+                ],
+                5,
+            ),
+        ],
+    )
     def test_get_victory_points(self, resources, expected_vp):
         resource_component = ResourcePoolComponent()
         for resource in resources:
