@@ -16,6 +16,9 @@ class BreakthroughPoolComponent(IPoolComponent, IRewardedComponent):
         super().__init__(BreakthroughType)
 
     def remove_any(self) -> None:
+        """
+        Remove breakthrough of any shape or icon; if it has multiples, it discards one of whichever it has the most of
+        """
         if all(b == 0 for b in self._pool.values()):
             raise ActionFailedException("There is no breakthroughs.")
         breakthrough_type = max(self._pool, key=self._pool.get)

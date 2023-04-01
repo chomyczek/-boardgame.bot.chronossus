@@ -18,6 +18,11 @@ class BuildingPoolComponent(IRewardedComponent):
             self._pool[building] = []
 
     def add(self, building_type: BuildingType, score: int) -> None:
+        """
+        Add new building to building pool
+        :param building_type: Type of building to add to pool
+        :param score: score of added building
+        """
         pool = self._pool[building_type]
         if len(pool) >= self.RULE_MAX_BUILDINGS_IN_POOL:
             raise ActionFailedException(f"Pool of {building_type.value} is already full.")
@@ -25,6 +30,9 @@ class BuildingPoolComponent(IRewardedComponent):
         pool.append(BuildingTile(building_type.value, score))
 
     def remove_anomaly(self) -> None:
+        """
+        Remove one anomaly from building pool
+        """
         anomaly_pool = self._pool[BuildingType.ANOMALY]
         if not any(anomaly_pool):
             raise ActionFailedException(f"Pool of {BuildingType.ANOMALY.value} is empty.")

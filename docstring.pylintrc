@@ -1,7 +1,7 @@
 [MASTER]
 ignore = tests
 disable = all
-enable = C0115,C0115,W9011,W9012,W9019,W9017,W9018,W9005,W9015,W9016,W9020,W9021,W9008
+enable = C0115,C0116,W9011,W9012,W9019,W9017,W9018,W9005,W9015,W9016,W9020,W9021,W9008
 load-plugins=pylint.extensions.docparams
 
 [pylint.extensions.docstyle]

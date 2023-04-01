@@ -15,4 +15,7 @@ class ITrackerComponent(ABC):
 
     @abstractmethod
     def move(self) -> None:
+        """
+        Abstract method of move
+        """
         raise NotImplementedError()

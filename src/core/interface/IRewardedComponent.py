@@ -8,4 +8,8 @@ class IRewardedComponent(ABC):
 
     @abstractmethod
     def get_victory_points(self) -> int:
+        """
+        Abstract method of get_victory_points
+        :return: Number of victory points that component is worth
+        """
         raise NotImplementedError()
