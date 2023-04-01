@@ -40,12 +40,12 @@ class TestBreakthroughPoolComponent:
             breakthrough_component.remove_any()
         assert str(e.value) == 'There is no breakthroughs.'
 
-
     @pytest.mark.parametrize("breakthrough_pool,expected_points",
                              [({BreakthroughType.CIRCLE: 1, BreakthroughType.SQUARE: 2, BreakthroughType.TRIANGLE: 3},
                                8), (
-                              {BreakthroughType.CIRCLE: 0, BreakthroughType.SQUARE: 2, BreakthroughType.TRIANGLE: 3},
-                              5)])
+                                      {BreakthroughType.CIRCLE: 0, BreakthroughType.SQUARE: 2,
+                                       BreakthroughType.TRIANGLE: 3},
+                                      5)])
     def test_get_victory_points(self, breakthrough_pool, expected_points):
         breakthrough_component = BreakthroughPoolComponent()
         breakthrough_component._pool = breakthrough_pool
