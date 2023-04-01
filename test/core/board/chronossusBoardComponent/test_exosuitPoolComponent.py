@@ -65,7 +65,7 @@ class TestExosuitPoolComponent:
         itertools.product([True, False], range(1, ExosuitPoolComponent.rule_num_of_draws + 1))))
     def test_power_up_exosuits_exhausted_drawn(self, trigger_impact, exhausted_count, mocker):
         exhausted_not_drawn = 2
-        mocker.patch('src.core.board.chronossusBoardComponent.exosuitPoolComponent.shuffle', )
+        mocker.patch('src.core.board.chronossusBoardComponent.exosuitPoolComponent.shuffle')
         exosuit_pool_component = ExosuitPoolComponent()
         exosuit_pool_component._energy_cores_pool = []
         for i in range(exhausted_not_drawn):
