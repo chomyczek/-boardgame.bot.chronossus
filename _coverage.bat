@@ -1,0 +1,1 @@
+pytest --cov=./src --cov-fail-under=100 --cov-report term-missing

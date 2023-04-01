@@ -1,4 +1,4 @@
-from src.core.Interface.ITrackerComponent import ITrackerComponent
+from src.core.interface.ITrackerComponent import ITrackerComponent
 from src.core.util.exception import ParadoxExceededException
 
 

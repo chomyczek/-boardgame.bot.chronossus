@@ -1,10 +1,11 @@
 from random import shuffle
 
-from src.core.base.component.EnergyCoreToken import EnergyCoreToken
+from src.core.base.component.energyCoreToken import EnergyCoreToken
 from src.core.util.exception import PassActionsException
 
 
 class ExosuitPoolComponent:
+    rule_num_of_draws = 3
     rule_max_exosuits: int
     rule_guaranteed_exosuits: int
     _energy_cores_pool: list[EnergyCoreToken]
@@ -14,6 +15,7 @@ class ExosuitPoolComponent:
         self.rule_max_exosuits = 6
         self.rule_guaranteed_exosuits = 3
         self._powered_up_exosuits = 0
+        self._energy_cores_pool = []
         # Fill it with 5 Energy Core tokens and 5 Exhausted Energy Core tokens
         for i in range(5):
             self.add_energy_core()
@@ -39,10 +41,9 @@ class ExosuitPoolComponent:
         self._powered_up_exosuits = min(drawn, self.rule_max_exosuits)
 
     def _draw_core_from_pool(self) -> int:
-        rule_num_of_draws = 3
         if not any(self._energy_cores_pool):
             return 0
-        num_of_draws = min(rule_num_of_draws, len(self._energy_cores_pool))
+        num_of_draws = min(self.rule_num_of_draws, len(self._energy_cores_pool))
         shuffle(self._energy_cores_pool)
         exhausted_core_drawn = 0
         for i in range(num_of_draws):
