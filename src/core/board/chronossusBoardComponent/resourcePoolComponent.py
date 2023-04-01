@@ -17,7 +17,7 @@ class ResourcePoolComponent(IPoolComponent, IRewardedComponent):
 
     def remove(self, resource: ResourceType) -> None:
         if self._pool[resource] == 0:
-            raise ActionFailedException(f'There is no {resource} resources.')
+            raise ActionFailedException(f'There is no {resource.value} resources.')
         self._pool[resource] -= 1
 
     def get_victory_points(self) -> int:
@@ -25,4 +25,4 @@ class ResourcePoolComponent(IPoolComponent, IRewardedComponent):
         Sum of points from pool.
         :return: Collected victory points value from.
         """
-        return self._points
+        return self._score

@@ -46,7 +46,7 @@ class TestBuildingPoolComponent:
         building_pool_component = BuildingPoolComponent()
         with pytest.raises(ActionFailedException) as e:
             building_pool_component.remove_anomaly()
-        assert str(e.value) == f'Pool of {BuildingType.ANOMALY} is empty.'
+        assert str(e.value) == f'Pool of {BuildingType.ANOMALY.value} is empty.'
 
     @pytest.mark.parametrize("pool_count,building_type", list(
         itertools.product(range(BuildingPoolComponent.RULE_MAX_BUILDINGS_IN_POOL + 1),

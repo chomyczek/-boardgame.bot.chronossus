@@ -4,12 +4,11 @@ from src.core.base.type import WorkerType
 
 
 class WorkerPoolComponent(IPoolComponent, IRewardedComponent):
-
     def __init__(self):
         super().__init__(WorkerType)
 
     def add(self, worker: WorkerType) -> None:
-        self._points += 1
+        self._score += 1
         super().add(worker)
         super().check_for_completed_set()
 
@@ -18,4 +17,4 @@ class WorkerPoolComponent(IPoolComponent, IRewardedComponent):
         Sum of points from pool.
         :return: Collected victory points value from.
         """
-        return self._points
+        return self._score

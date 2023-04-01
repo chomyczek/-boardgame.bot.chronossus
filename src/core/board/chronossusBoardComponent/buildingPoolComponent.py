@@ -23,7 +23,7 @@ class BuildingPoolComponent(IRewardedComponent):
     def remove_anomaly(self) -> None:
         anomaly_pool = self._pool[BuildingType.ANOMALY]
         if not any(anomaly_pool):
-            raise ActionFailedException(f'Pool of {BuildingType.ANOMALY} is empty.')
+            raise ActionFailedException(f'Pool of {BuildingType.ANOMALY.value} is empty.')
         anomaly_pool.pop()
 
     def get_victory_points(self) -> int:

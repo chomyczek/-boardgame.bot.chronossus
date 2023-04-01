@@ -3,12 +3,12 @@ from abc import ABC, abstractmethod
 
 
 class IPoolComponent(ABC):
-    _points: int
+    _score: int
     _pool: dict[enum, int]
     _pool_type: enum
 
     def __init__(self, pool_type: enum):
-        self._points = 0
+        self._score = 0
         self._pool = {}
         self._pool_type = pool_type
         for member in self._pool_type:
@@ -23,7 +23,7 @@ class IPoolComponent(ABC):
         Once it has at least one of all types, it discards one of each and gains 5 VPs.
         """
         if min(self._pool.values()) > 0:
-            self._points += 5
+            self._score += 5
             for member in self._pool_type:
                 self._pool[member] -= 1
 
