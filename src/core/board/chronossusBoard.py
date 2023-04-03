@@ -22,6 +22,7 @@ class ChronossusBoard:
     breakthroughs_pool: BreakthroughPoolComponent
     building_pool: BuildingPoolComponent
     victory_points_pool: VictoryPointComponent
+    warp_token_pool: WarpTokenPool
 
     def __init__(self):
         self.building_pool = BuildingPoolComponent()
@@ -32,3 +33,4 @@ class ChronossusBoard:
         self.resources_pool = ResourcePoolComponent()
         self.workers_pool = WorkerPoolComponent()
         self.victory_points_pool = VictoryPointComponent()
+        self.warp_token_pool = WarpTokenPool()

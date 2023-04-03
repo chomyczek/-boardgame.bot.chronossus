@@ -26,10 +26,12 @@ class MineResourceAction(IAction, IPriority):
                 priority.append(resource)
         return priority
 
-    def execute(self, resource_type: ResourceType) -> None:
+    def execute(self, resource_type_one: ResourceType, resource_type_two: ResourceType) -> None:
         try:
             self._board.exosuits_pool.place_exosuit()
+            if resource_type_one:
+                self._board.resources_pool.add(resource_type_one)
+            if resource_type_two:
+                self._board.resources_pool.add(resource_type_two)
         except ActionFailedException:
             self._failedAction.execute()
-            return
-        self._board.resources_pool.add(resource_type)

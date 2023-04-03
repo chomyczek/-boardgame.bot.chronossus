@@ -17,10 +17,9 @@ class RecruitAction(IAction, IPriority):
     def execute(self, worker_type: WorkerType) -> None:
         try:
             self._board.exosuits_pool.place_exosuit()
+            self._board.workers_pool.add(worker_type)
         except ActionFailedException:
             self._failedAction.execute()
-            return
-        self._board.workers_pool.add(worker_type)
 
     def get_priority(self) -> list[WorkerType]:
         priority = []
