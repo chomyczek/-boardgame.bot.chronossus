@@ -31,3 +31,6 @@ class ResourcePoolComponent(IPoolComponent, IRewardedComponent):
         :return: Collected victory points value from.
         """
         return self._score
+
+    def get(self) -> dict[ResourceType, int]:
+        return self._pool
