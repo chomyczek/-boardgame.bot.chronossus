@@ -1,16 +1,25 @@
+from src.core.base.action.failedAction import FailedAction
 from src.core.base.type import WorkerType
 from src.core.board.chronossusBoard import ChronossusBoard
 from src.core.interface.IAction import IAction
 from src.core.interface.IPriority import IPriority
+from src.core.util.exception import ActionFailedException
 
 
 class RecruitAction(IAction, IPriority):
     _board: ChronossusBoard
+    _failedAction: FailedAction
 
     def __init__(self, chronossus_board: ChronossusBoard):
         self._board = chronossus_board
+        self._failedAction = FailedAction(chronossus_board)
 
     def execute(self, worker_type: WorkerType) -> None:
+        try:
+            self._board.exosuits_pool.place_exosuit()
+        except ActionFailedException:
+            self._failedAction.execute()
+            return
         self._board.workers_pool.add(worker_type)
 
     def get_priority(self) -> list[WorkerType]:
