@@ -26,6 +26,10 @@ class IPoolComponent(ABC):
         """
         self._pool[member] += 1
 
+    @abstractmethod
+    def get(self):
+        raise NotImplementedError()
+
     def check_for_completed_set(self) -> None:
         """
         Once it has at least one of all types, it discards one of each and gains 5 VPs.

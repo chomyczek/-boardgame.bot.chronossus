@@ -13,9 +13,9 @@ class ChronossusBoard:
     Chronossus board class.
     """
 
-    _actions = None
+    _actions_tracker = None
     resources_pool: ResourcePoolComponent
-    _workers_pool: WorkerPoolComponent
+    workers_pool: WorkerPoolComponent
     exosuits_pool: ExosuitPoolComponent
     paradox_track: ParadoxTrackerComponent
     time_travel_track: TimeTravelTrackerComponent
@@ -30,4 +30,5 @@ class ChronossusBoard:
         self.paradox_track = ParadoxTrackerComponent()
         self.exosuits_pool = ExosuitPoolComponent()
         self.resources_pool = ResourcePoolComponent()
+        self.workers_pool = WorkerPoolComponent()
         self.victory_points_pool = VictoryPointComponent()

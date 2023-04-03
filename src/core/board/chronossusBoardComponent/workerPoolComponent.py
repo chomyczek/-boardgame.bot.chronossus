@@ -8,6 +8,9 @@ class WorkerPoolComponent(IPoolComponent, IRewardedComponent):
     Worker pool component for chronossus board
     """
 
+    def get(self) -> dict[WorkerType, int]:
+        return self._pool
+
     def __init__(self):
         super().__init__(WorkerType)
 
