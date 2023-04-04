@@ -1,14 +1,14 @@
 import pytest
 
 from src.core.base.type import ResourceType
-from src.core.board.chronossusBoardComponent.resourcePoolComponent import ResourcePoolComponent
+from src.core.board.chronossusBoardComponent.resourcePoolComponent import ResourceEnumPoolComponent
 from src.core.util.exception import ActionFailedException
 
 
 class TestResourcePoolComponent:
     @pytest.mark.parametrize("resource_type", [r for r in ResourceType])
     def test_add(self, resource_type):
-        resource_component = ResourcePoolComponent()
+        resource_component = ResourceEnumPoolComponent()
         resource_component.add(resource_type)
         for resource in ResourceType:
             expected = 0
@@ -18,7 +18,7 @@ class TestResourcePoolComponent:
 
     def test_add_full_set(self):
         expected = 0
-        resource_component = ResourcePoolComponent()
+        resource_component = ResourceEnumPoolComponent()
         for resource in ResourceType:
             resource_component.add(resource)
         for resource in ResourceType:
@@ -27,7 +27,7 @@ class TestResourcePoolComponent:
     @pytest.mark.parametrize("resource_type", [r for r in ResourceType])
     def test_remove_single(self, resource_type):
         expected = 1
-        resource_component = ResourcePoolComponent()
+        resource_component = ResourceEnumPoolComponent()
         for resource in ResourceType:
             resource_component._pool[resource] = expected
         resource_component.remove([resource_type])
@@ -40,7 +40,7 @@ class TestResourcePoolComponent:
     @pytest.mark.parametrize("resource_types,after_remove", [([ResourceType.TITANIUM, ResourceType.GOLD], 1), ([ResourceType.NEUTRONIUM, ResourceType.NEUTRONIUM], 0), ([ResourceType.NEUTRONIUM, ResourceType.URANIUM], 1)])
     def test_remove_multiple(self, resource_types, after_remove):
         expected = 2
-        resource_component = ResourcePoolComponent()
+        resource_component = ResourceEnumPoolComponent()
         for resource in ResourceType:
             resource_component._pool[resource] = expected
         resource_component.remove(resource_types)
@@ -52,14 +52,14 @@ class TestResourcePoolComponent:
 
     @pytest.mark.parametrize("resource_type", [r for r in ResourceType])
     def test_remove_single_failed(self, resource_type):
-        resource_component = ResourcePoolComponent()
+        resource_component = ResourceEnumPoolComponent()
         with pytest.raises(ActionFailedException) as e:
             resource_component.remove([resource_type])
         assert str(e.value) == f"There is no {resource_type.value} resources."
 
     @pytest.mark.parametrize("resource_type,type_info", [([ResourceType.TITANIUM, ResourceType.GOLD],ResourceType.TITANIUM),([ResourceType.GOLD, ResourceType.GOLD],ResourceType.GOLD),([ResourceType.NEUTRONIUM, ResourceType.GOLD, ResourceType.NEUTRONIUM],ResourceType.NEUTRONIUM),([ResourceType.TITANIUM, ResourceType.GOLD,ResourceType.URANIUM, ResourceType.NEUTRONIUM],ResourceType.TITANIUM) ])
     def test_remove_multiple_failed(self, resource_type, type_info):
-        resource_component = ResourcePoolComponent()
+        resource_component = ResourceEnumPoolComponent()
         with pytest.raises(ActionFailedException) as e:
             resource_component.remove(resource_type)
         assert str(e.value) == f"There is no {type_info.value} resources."
@@ -84,7 +84,13 @@ class TestResourcePoolComponent:
         ],
     )
     def test_get_victory_points(self, resources, expected_vp):
-        resource_component = ResourcePoolComponent()
+        resource_component = ResourceEnumPoolComponent()
         for resource in resources:
             resource_component.add(resource)
         assert resource_component.get_victory_points() == expected_vp
+
+    def test_get(self):
+        breakthrough_component = ResourceEnumPoolComponent()
+        breakthrough_component._pool = {ResourceType.TITANIUM: 1, ResourceType.URANIUM:1, ResourceType.NEUTRONIUM: 1, ResourceType.GOLD:1}
+        for breakthrough in ResourceType:
+            assert breakthrough_component.get()[breakthrough] == 1

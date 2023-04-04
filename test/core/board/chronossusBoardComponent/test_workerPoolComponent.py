@@ -1,14 +1,14 @@
 import pytest
 
 from src.core.base.type import WorkerType
-from src.core.board.chronossusBoardComponent.workerPoolComponent import WorkerPoolComponent
+from src.core.board.chronossusBoardComponent.workerPoolComponent import WorkerEnumPoolComponent
 
 
 class TestWorkerPoolComponent:
     @pytest.mark.parametrize("worker_type", [r for r in WorkerType])
     def test_add(self, worker_type):
         expected_vp = 1
-        worker_component = WorkerPoolComponent()
+        worker_component = WorkerEnumPoolComponent()
         worker_component.add(worker_type)
         for worker in WorkerType:
             expected = 0
@@ -19,7 +19,7 @@ class TestWorkerPoolComponent:
 
     def test_add_full_set(self):
         expected = 0
-        worker_component = WorkerPoolComponent()
+        worker_component = WorkerEnumPoolComponent()
         for worker in WorkerType:
             worker_component.add(worker)
         for worker in WorkerType:
@@ -45,7 +45,13 @@ class TestWorkerPoolComponent:
         ],
     )
     def test_get_victory_points(self, workers, expected_vp):
-        worker_component = WorkerPoolComponent()
+        worker_component = WorkerEnumPoolComponent()
         for worker in workers:
             worker_component.add(worker)
         assert worker_component.get_victory_points() == expected_vp
+
+    def test_get(self):
+        breakthrough_component = WorkerEnumPoolComponent()
+        breakthrough_component._pool = {WorkerType.GENIUS: 1, WorkerType.SCIENTIST:1, WorkerType.ENGINEER: 1, WorkerType.ADMINISTRATOR:1}
+        for breakthrough in WorkerType:
+            assert breakthrough_component.get()[breakthrough] == 1

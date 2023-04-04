@@ -1,10 +1,12 @@
+from __future__ import annotations
+
 import enum
 from abc import ABC, abstractmethod
 
 
-class IPoolComponent(ABC):
+class IEnumPoolComponent(ABC):
     """
-    Interface for pool components on boards
+    Interface for pool of enum components on the board
     """
 
     _score: int
@@ -27,7 +29,7 @@ class IPoolComponent(ABC):
         self._pool[member] += 1
 
     @abstractmethod
-    def get(self) -> dict[enum, int]:
+    def get(self) -> (dict[enum, int]|int):
         raise NotImplementedError()
 
     def check_for_completed_set(self) -> None:

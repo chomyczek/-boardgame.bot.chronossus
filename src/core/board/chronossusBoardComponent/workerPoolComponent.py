@@ -1,9 +1,9 @@
 from src.core.base.type import WorkerType
-from src.core.interface.IPoolComponent import IPoolComponent
+from src.core.interface.IEnumPoolComponent import IEnumPoolComponent
 from src.core.interface.IRewardedComponent import IRewardedComponent
 
 
-class WorkerPoolComponent(IPoolComponent, IRewardedComponent):
+class WorkerEnumPoolComponent(IEnumPoolComponent, IRewardedComponent):
     """
     Worker pool component for chronossus board
     """
