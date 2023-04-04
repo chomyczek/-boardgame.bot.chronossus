@@ -16,14 +16,16 @@ class ResourcePoolComponent(IPoolComponent, IRewardedComponent):
     def __init__(self):
         super().__init__(ResourceType)
 
-    def remove(self, resource: ResourceType) -> None:
+    def remove(self, resources: list[ResourceType]) -> None:
         """
         Remove one resource of provided type from the pool
-        :param resource: Resource type to remove
+        :param resources: Resource type to remove
         """
-        if self._pool[resource] == 0:
-            raise ActionFailedException(f"There is no {resource.value} resources.")
-        self._pool[resource] -= 1
+        for resource in resources:
+            if self._pool[resource] == 0:
+                raise ActionFailedException(f"There is no {resource.value} resources.")
+        for resource in resources:
+            self._pool[resource] -= 1
 
     def get_victory_points(self) -> int:
         """

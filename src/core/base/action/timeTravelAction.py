@@ -6,6 +6,9 @@ from src.core.util.exception import ActionFailedException
 
 class TimeTravelAction(IAction):
 
+    _board: ChronossusBoard
+    _failedAction: FailedAction
+
     def __init__(self, chronossus_board: ChronossusBoard):
         self._board = chronossus_board
         self._failedAction = FailedAction(chronossus_board)
