@@ -25,23 +25,44 @@ class TestResourcePoolComponent:
             assert resource_component._pool[resource] == expected
 
     @pytest.mark.parametrize("resource_type", [r for r in ResourceType])
-    def test_remove(self, resource_type):
+    def test_remove_single(self, resource_type):
+        expected = 1
         resource_component = ResourcePoolComponent()
         for resource in ResourceType:
-            resource_component._pool[resource] = 1
-        resource_component.remove(resource_type)
+            resource_component._pool[resource] = expected
+        resource_component.remove([resource_type])
         for resource in ResourceType:
-            expected = 1
+            expected_check = expected
             if resource == resource_type:
-                expected = 0
-            assert resource_component._pool[resource] == expected
+                expected_check = 0
+            assert resource_component._pool[resource] == expected_check
+
+    @pytest.mark.parametrize("resource_types,after_remove", [([ResourceType.TITANIUM, ResourceType.GOLD], 1), ([ResourceType.NEUTRONIUM, ResourceType.NEUTRONIUM], 0), ([ResourceType.NEUTRONIUM, ResourceType.URANIUM], 1)])
+    def test_remove_multiple(self, resource_types, after_remove):
+        expected = 2
+        resource_component = ResourcePoolComponent()
+        for resource in ResourceType:
+            resource_component._pool[resource] = expected
+        resource_component.remove(resource_types)
+        for resource in ResourceType:
+            expected_check = expected
+            if resource in resource_types:
+                expected_check = after_remove
+            assert resource_component._pool[resource] == expected_check
 
     @pytest.mark.parametrize("resource_type", [r for r in ResourceType])
-    def test_remove_failed(self, resource_type):
+    def test_remove_single_failed(self, resource_type):
+        resource_component = ResourcePoolComponent()
+        with pytest.raises(ActionFailedException) as e:
+            resource_component.remove([resource_type])
+        assert str(e.value) == f"There is no {resource_type.value} resources."
+
+    @pytest.mark.parametrize("resource_type,type_info", [([ResourceType.TITANIUM, ResourceType.GOLD],ResourceType.TITANIUM),([ResourceType.GOLD, ResourceType.GOLD],ResourceType.GOLD),([ResourceType.NEUTRONIUM, ResourceType.GOLD, ResourceType.NEUTRONIUM],ResourceType.NEUTRONIUM),([ResourceType.TITANIUM, ResourceType.GOLD,ResourceType.URANIUM, ResourceType.NEUTRONIUM],ResourceType.TITANIUM) ])
+    def test_remove_multiple_failed(self, resource_type, type_info):
         resource_component = ResourcePoolComponent()
         with pytest.raises(ActionFailedException) as e:
             resource_component.remove(resource_type)
-        assert str(e.value) == f"There is no {resource_type.value} resources."
+        assert str(e.value) == f"There is no {type_info.value} resources."
 
     @pytest.mark.parametrize(
         "resources,expected_vp",
