@@ -9,6 +9,9 @@ class BreakthroughPoolComponent(IPoolComponent, IRewardedComponent):
     Breakthrough pool component for chronossus board
     """
 
+    def get(self) -> dict[BreakthroughType, int]:
+        return self._pool
+
     def add(self, breakthrough: BreakthroughType):
         super().add(breakthrough)
 

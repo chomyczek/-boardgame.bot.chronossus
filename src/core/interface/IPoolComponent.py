@@ -27,7 +27,7 @@ class IPoolComponent(ABC):
         self._pool[member] += 1
 
     @abstractmethod
-    def get(self):
+    def get(self) -> dict[enum, int]:
         raise NotImplementedError()
 
     def check_for_completed_set(self) -> None:
