@@ -5,6 +5,7 @@ from src.core.board.chronossusBoardComponent.paradoxTrackerComponent import Para
 from src.core.board.chronossusBoardComponent.resourcePoolComponent import ResourcePoolComponent
 from src.core.board.chronossusBoardComponent.timeTravelTrackerComponent import TimeTravelTrackerComponent
 from src.core.board.chronossusBoardComponent.victoryPointPool import VictoryPointComponent
+from src.core.board.chronossusBoardComponent.warpTokenPool import WarpTokenPool
 from src.core.board.chronossusBoardComponent.workerPoolComponent import WorkerPoolComponent
 
 

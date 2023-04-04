@@ -14,5 +14,5 @@ class ResearchShapeDie(IDie):
         BreakthroughType.TRIANGLE,
     ]
 
-    def roll(self):
-        return random.choices(self._sides)
+    def roll(self) -> BreakthroughType:
+        return random.choices(self._sides)[0]
