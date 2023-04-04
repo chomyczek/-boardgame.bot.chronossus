@@ -5,7 +5,6 @@ from src.core.util.exception import ActionFailedException
 
 
 class TimeTravelAction(IAction):
-
     _board: ChronossusBoard
     _failedAction: FailedAction
 

@@ -21,4 +21,3 @@ class ResearchAction(IAction):
             self._board.breakthroughs_pool.add(shape)
         except ActionFailedException:
             self._failedAction.execute()
-

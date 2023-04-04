@@ -6,7 +6,6 @@ from src.core.util.exception import ActionFailedException
 
 
 class ConstructAction(IAction):
-
     _construction_type: BuildingType
     _board: ChronossusBoard
     _failedAction: FailedAction

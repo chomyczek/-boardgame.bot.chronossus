@@ -10,5 +10,5 @@ class WarpTokenPool:
 
     def add(self):
         if self.warp_tiles == self.MAX_WARP_TILES:
-            raise ActionFailedException('There is no warp tokens to remove from Timelines')
+            raise ActionFailedException("There is no warp tokens to remove from Timelines")
         self.warp_tiles += 1

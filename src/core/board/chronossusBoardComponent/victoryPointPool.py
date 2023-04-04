@@ -5,6 +5,7 @@ class VictoryPointComponent(IRewardedComponent):
     """
     Worker pool component for chronossus board
     """
+
     _score: int
 
     def __init__(self):

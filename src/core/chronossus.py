@@ -10,4 +10,3 @@ class Chronossus:
 
     def __init__(self):
         self.chronossus_board = ChronossusBoard()
-
