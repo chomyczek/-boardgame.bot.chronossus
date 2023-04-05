@@ -1,6 +1,6 @@
-from src.core.interface.IAction import IAction
+from src.core.interface.IAction import IAction # pragma: no cover - This action does nothing
 
 
-class RebootAction(IAction):
-    def execute(self, *args) -> None:
+class RebootAction(IAction): # pragma: no cover - This action does nothing
+    def execute(self) -> None:
         pass
