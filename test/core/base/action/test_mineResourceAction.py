@@ -55,6 +55,4 @@ class TestMineResourceAction:
         action = MineResourceAction(board)
         for resource in populate:
             board.resources_pool.add(resource)
-        prio = action.get_priority()
-        exp = expected
         assert action.get_priority() == expected

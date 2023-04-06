@@ -15,20 +15,11 @@ class RecruitAction(IAction, IPriority):
         self._failedAction = FailedAction(chronossus_board)
 
     def execute(self, worker_type: WorkerType) -> None:
-        try:
-            self._board.exosuits_pool.place_exosuit()
-            self._board.workers_pool.add(worker_type)
-        except ActionFailedException:
-            self._failedAction.execute()
+        self._board.exosuits_pool.place_exosuit()
+        self._board.workers_pool.add(worker_type)
 
     def get_priority(self) -> list[WorkerType]:
-        priority = []
         pool = self._board.workers_pool.get()
-        i = 0
-        for worker in [WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER, WorkerType.SCIENTIST]:
-            if pool[worker] == 0:
-                priority.insert(i, worker)
-                i += 1
-            else:
-                priority.append(worker)
+        general_priority = [WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER, WorkerType.SCIENTIST]
+        priority = sorted(pool, key=lambda k: (pool[k], general_priority.index(k)))
         return priority
