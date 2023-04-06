@@ -30,7 +30,7 @@ class TestConstructAction:
         assert powered_up_board.building_pool.get_victory_points() == vp
 
     @pytest.mark.parametrize("construction_type", [building for building in BuildingType])
-    def test_execute_pass(self, construction_type):
+    def test_execute_raise_pass(self, construction_type):
         vp = 3
         board = ChronossusBoard()
         if construction_type == BuildingType.SUPER_PROJECT:
