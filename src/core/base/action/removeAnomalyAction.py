@@ -20,6 +20,13 @@ class RemoveAnomalyAction(IAction, IPriority):
             self._board.resources_pool.remove(resources)
         except ActionFailedException:
             self._failedAction.execute()
+            return
+        try:
+            self._board.building_pool.remove_anomaly()
+        except ActionFailedException:
+            for resource in resources:
+                self._board.resources_pool.add(resource)
+            self._failedAction.execute()
 
     def get_priority(self, decrease_priority: list[ResourceType] = None) -> list[ResourceType]:
         priority = []
@@ -30,17 +37,15 @@ class RemoveAnomalyAction(IAction, IPriority):
         resource_pool_copy[ResourceType.NEUTRONIUM] *= 2
         max_resources = self._get_keys_from_value(resource_pool_copy, max(resource_pool_copy.values()))
 
-        if ResourceType.NEUTRONIUM in max_resources and len(max_resources) <= 2:
+        if ResourceType.NEUTRONIUM in max_resources and len(max_resources) < 2:
             return [ResourceType.NEUTRONIUM]
 
         for resource in [ResourceType.TITANIUM, ResourceType.GOLD, ResourceType.URANIUM]:
             if resource in max_resources:
                 priority.append(resource)
 
-        if len(priority) < 2:
-            priority.append(self.get_priority([priority[0], ResourceType.NEUTRONIUM]))
-            if ResourceType.NEUTRONIUM in priority:
-                return [ResourceType.NEUTRONIUM]
+        if len(priority) < 2 and not decrease_priority:
+            priority.extend(self.get_priority([priority[0], ResourceType.NEUTRONIUM]))
 
         if len(priority) > 2:
             priority = priority[0:2]

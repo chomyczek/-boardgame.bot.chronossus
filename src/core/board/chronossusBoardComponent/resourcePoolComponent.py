@@ -22,7 +22,7 @@ class ResourceEnumPoolComponent(IEnumPoolComponent, IRewardedComponent):
         :param resources: Resource type to remove
         """
         for resource in resources:
-            if self._pool[resource] == 0:
+            if self._pool[resource] < resources.count(resource):
                 raise ActionFailedException(f"There is no {resource.value} resources.")
         for resource in resources:
             self._pool[resource] -= 1
