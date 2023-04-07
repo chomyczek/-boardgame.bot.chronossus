@@ -5,6 +5,7 @@ class IAction(ABC):
     """
     Interface for action
     """
+
     @abstractmethod
     def execute(self, *args) -> None:
         """
