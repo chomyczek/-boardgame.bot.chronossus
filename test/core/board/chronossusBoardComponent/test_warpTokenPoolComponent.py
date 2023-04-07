@@ -38,7 +38,7 @@ class TestWarpTokenPoolComponent:
         with pytest.raises(ActionFailedException) as e:
             for i in range(count):
                 warp_pool.remove()
-        assert str(e.value) == f"All warp tokens should be already placed on the Timelines."
+        assert str(e.value) == "All warp tokens was already placed on the Timelines."
 
     def test_get(self):
         warp_pool = WarpTokenPoolComponent()

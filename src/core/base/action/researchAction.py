@@ -15,9 +15,6 @@ class ResearchAction(IAction):
         self._failedAction = FailedAction(chronossus_board)
 
     def execute(self) -> None:
-        try:
-            self._board.exosuits_pool.place_exosuit()
-            shape = self._die.roll()
-            self._board.breakthroughs_pool.add(shape)
-        except ActionFailedException:
-            self._failedAction.execute()
+        self._board.exosuits_pool.place_exosuit()
+        shape = self._die.roll()
+        self._board.breakthroughs_pool.add(shape)

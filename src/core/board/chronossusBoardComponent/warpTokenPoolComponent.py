@@ -18,5 +18,5 @@ class WarpTokenPoolComponent:
 
     def remove(self) -> None:
         if self._warp_tiles == 0:
-            raise ActionFailedException("All warp tokens should be already placed on the Timelines.")
+            raise ActionFailedException("All warp tokens was already placed on the Timelines.")
         self._warp_tiles -= 1
