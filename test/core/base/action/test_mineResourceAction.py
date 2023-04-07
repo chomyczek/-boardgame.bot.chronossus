@@ -7,9 +7,15 @@ from src.core.util.exception import PassActionsException
 
 
 class TestMineResourceAction:
-    @pytest.mark.parametrize("resources",
-                             [[None, None], [None, ResourceType.NEUTRONIUM], [ResourceType.URANIUM, None],
-                              [ResourceType.TITANIUM, ResourceType.TITANIUM]])
+    @pytest.mark.parametrize(
+        "resources",
+        [
+            [None, None],
+            [None, ResourceType.NEUTRONIUM],
+            [ResourceType.URANIUM, None],
+            [ResourceType.TITANIUM, ResourceType.TITANIUM],
+        ],
+    )
     def test_execute(self, resources: ResourceType):
         board = ChronossusBoard()
         board.exosuits_pool.power_up_exosuits()
@@ -27,29 +33,36 @@ class TestMineResourceAction:
         with pytest.raises(PassActionsException):
             action.execute(ResourceType.TITANIUM, ResourceType.GOLD)
 
-    @pytest.mark.parametrize("expected,populate",
-                             [(
-                              [ResourceType.NEUTRONIUM, ResourceType.URANIUM, ResourceType.GOLD, ResourceType.TITANIUM],
-                              []),
-                              (
-                              [ResourceType.URANIUM, ResourceType.GOLD, ResourceType.TITANIUM, ResourceType.NEUTRONIUM],
-                              [ResourceType.NEUTRONIUM]),
-                              (
-                              [ResourceType.URANIUM, ResourceType.TITANIUM, ResourceType.NEUTRONIUM, ResourceType.GOLD],
-                              [ResourceType.NEUTRONIUM, ResourceType.GOLD]),
-                              (
-                              [ResourceType.URANIUM, ResourceType.TITANIUM, ResourceType.GOLD, ResourceType.NEUTRONIUM],
-                              [ResourceType.NEUTRONIUM, ResourceType.NEUTRONIUM, ResourceType.GOLD]),
-                              (
-                              [ResourceType.NEUTRONIUM, ResourceType.URANIUM, ResourceType.GOLD, ResourceType.TITANIUM],
-                              [ResourceType.TITANIUM, ResourceType.TITANIUM, ResourceType.TITANIUM]),
-                              (
-                              [ResourceType.TITANIUM, ResourceType.NEUTRONIUM, ResourceType.URANIUM, ResourceType.GOLD],
-                              [ResourceType.NEUTRONIUM, ResourceType.GOLD, ResourceType.URANIUM]),
-                              (
-                              [ResourceType.NEUTRONIUM, ResourceType.URANIUM, ResourceType.TITANIUM, ResourceType.GOLD],
-                              [ResourceType.GOLD, ResourceType.TITANIUM, ResourceType.GOLD])
-                              ])
+    @pytest.mark.parametrize(
+        "expected,populate",
+        [
+            ([ResourceType.NEUTRONIUM, ResourceType.URANIUM, ResourceType.GOLD, ResourceType.TITANIUM], []),
+            (
+                [ResourceType.URANIUM, ResourceType.GOLD, ResourceType.TITANIUM, ResourceType.NEUTRONIUM],
+                [ResourceType.NEUTRONIUM],
+            ),
+            (
+                [ResourceType.URANIUM, ResourceType.TITANIUM, ResourceType.NEUTRONIUM, ResourceType.GOLD],
+                [ResourceType.NEUTRONIUM, ResourceType.GOLD],
+            ),
+            (
+                [ResourceType.URANIUM, ResourceType.TITANIUM, ResourceType.GOLD, ResourceType.NEUTRONIUM],
+                [ResourceType.NEUTRONIUM, ResourceType.NEUTRONIUM, ResourceType.GOLD],
+            ),
+            (
+                [ResourceType.NEUTRONIUM, ResourceType.URANIUM, ResourceType.GOLD, ResourceType.TITANIUM],
+                [ResourceType.TITANIUM, ResourceType.TITANIUM, ResourceType.TITANIUM],
+            ),
+            (
+                [ResourceType.TITANIUM, ResourceType.NEUTRONIUM, ResourceType.URANIUM, ResourceType.GOLD],
+                [ResourceType.NEUTRONIUM, ResourceType.GOLD, ResourceType.URANIUM],
+            ),
+            (
+                [ResourceType.NEUTRONIUM, ResourceType.URANIUM, ResourceType.TITANIUM, ResourceType.GOLD],
+                [ResourceType.GOLD, ResourceType.TITANIUM, ResourceType.GOLD],
+            ),
+        ],
+    )
     def test_get_priority(self, expected, populate):
         board = ChronossusBoard()
         action = MineResourceAction(board)

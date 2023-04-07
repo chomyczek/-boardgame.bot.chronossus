@@ -20,7 +20,11 @@ class TestBreakthroughPoolComponent:
 
     def test_get(self):
         breakthrough_component = BreakthroughEnumPoolComponent()
-        breakthrough_component._pool = {BreakthroughType.CIRCLE: 1, BreakthroughType.SQUARE:1, BreakthroughType.TRIANGLE: 1}
+        breakthrough_component._pool = {
+            BreakthroughType.CIRCLE: 1,
+            BreakthroughType.SQUARE: 1,
+            BreakthroughType.TRIANGLE: 1,
+        }
         for breakthrough in BreakthroughType:
             assert breakthrough_component.get()[breakthrough] == 1
 

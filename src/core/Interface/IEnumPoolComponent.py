@@ -29,7 +29,7 @@ class IEnumPoolComponent(ABC):
         self._pool[member] += 1
 
     @abstractmethod
-    def get(self) -> (dict[enum, int]|int):
+    def get(self) -> dict[enum, int] | int:
         raise NotImplementedError()
 
     def check_for_completed_set(self) -> None:

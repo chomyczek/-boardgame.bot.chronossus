@@ -1,13 +1,12 @@
 import pytest
 
 from src.core.base.action.removeAnomalyAction import RemoveAnomalyAction
-from src.core.base.type import ResourceType, BuildingType
+from src.core.base.type import BuildingType, ResourceType
 from src.core.board.chronossusBoard import ChronossusBoard
 from src.core.board.chronossusBoardComponent.resourcePoolComponent import ResourceEnumPoolComponent
 
 
 class TestRemoveAnomalyAction:
-
     def test_execute(self):
         board = ChronossusBoard()
         board.resources_pool.add(ResourceType.TITANIUM)
@@ -27,8 +26,7 @@ class TestRemoveAnomalyAction:
         action.execute()
         assert mock_failed_action.called
 
-    @pytest.mark.parametrize("resource_in_pool",
-                             [ResourceType.GOLD, ResourceType.TITANIUM, ResourceType.URANIUM, None])
+    @pytest.mark.parametrize("resource_in_pool", [ResourceType.GOLD, ResourceType.TITANIUM, ResourceType.URANIUM, None])
     def test_execute_not_enough_resources_action_failed(self, resource_in_pool, mocker):
         anomaly_vp = -3
         anomaly_count = 1
@@ -43,24 +41,37 @@ class TestRemoveAnomalyAction:
         assert board.building_pool.get_victory_points() == anomaly_vp
         assert mock_failed_action.called
 
-    @pytest.mark.parametrize("expected,resources_in_pool",
-                             [
-                                 ([ResourceType.TITANIUM, ResourceType.GOLD],
-                                  [ResourceType.GOLD, ResourceType.TITANIUM, ResourceType.URANIUM]),
-                                 ([ResourceType.TITANIUM, ResourceType.TITANIUM],
-                                  [ResourceType.TITANIUM, ResourceType.TITANIUM, ResourceType.TITANIUM]),
-                                 ([ResourceType.TITANIUM, ResourceType.TITANIUM],
-                                  [ResourceType.TITANIUM, ResourceType.NEUTRONIUM, ResourceType.TITANIUM]),
-                                 ([ResourceType.NEUTRONIUM],
-                                  [ResourceType.NEUTRONIUM, ResourceType.GOLD, ResourceType.URANIUM]),
-                                 ([ResourceType.TITANIUM, ResourceType.GOLD],
-                                  []),
-                                 ([ResourceType.URANIUM, ResourceType.TITANIUM],
-                                  [ResourceType.URANIUM]),
-                                 ([ResourceType.GOLD, ResourceType.TITANIUM],
-                                  [ResourceType.GOLD, ResourceType.GOLD, ResourceType.GOLD, ResourceType.TITANIUM,
-                                   ResourceType.TITANIUM, ResourceType.NEUTRONIUM]),
-                             ])
+    @pytest.mark.parametrize(
+        "expected,resources_in_pool",
+        [
+            (
+                [ResourceType.TITANIUM, ResourceType.GOLD],
+                [ResourceType.GOLD, ResourceType.TITANIUM, ResourceType.URANIUM],
+            ),
+            (
+                [ResourceType.TITANIUM, ResourceType.TITANIUM],
+                [ResourceType.TITANIUM, ResourceType.TITANIUM, ResourceType.TITANIUM],
+            ),
+            (
+                [ResourceType.TITANIUM, ResourceType.TITANIUM],
+                [ResourceType.TITANIUM, ResourceType.NEUTRONIUM, ResourceType.TITANIUM],
+            ),
+            ([ResourceType.NEUTRONIUM], [ResourceType.NEUTRONIUM, ResourceType.GOLD, ResourceType.URANIUM]),
+            ([ResourceType.TITANIUM, ResourceType.GOLD], []),
+            ([ResourceType.URANIUM, ResourceType.TITANIUM], [ResourceType.URANIUM]),
+            (
+                [ResourceType.GOLD, ResourceType.TITANIUM],
+                [
+                    ResourceType.GOLD,
+                    ResourceType.GOLD,
+                    ResourceType.GOLD,
+                    ResourceType.TITANIUM,
+                    ResourceType.TITANIUM,
+                    ResourceType.NEUTRONIUM,
+                ],
+            ),
+        ],
+    )
     def test_get_priority(self, expected, resources_in_pool):
         board = ChronossusBoard()
         test_resources_pool = ResourceEnumPoolComponent()

@@ -8,7 +8,9 @@ from src.core.util.exception import PassActionsException
 
 class TestsResearchAction:
     def test_execute(self, mocker):
-        mocker.patch("src.core.base.component.researchShapeDie.ResearchShapeDie.roll", return_value=BreakthroughType.CIRCLE)
+        mocker.patch(
+            "src.core.base.component.researchShapeDie.ResearchShapeDie.roll", return_value=BreakthroughType.CIRCLE
+        )
         board = ChronossusBoard()
         board.exosuits_pool.power_up_exosuits()
         action = ResearchAction(board)

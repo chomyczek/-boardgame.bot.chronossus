@@ -8,8 +8,7 @@ from src.core.util.exception import PassActionsException
 
 
 class TestRecruitAction:
-    @pytest.mark.parametrize("worker",
-                             [w for w in WorkerType])
+    @pytest.mark.parametrize("worker", [w for w in WorkerType])
     def test_execute(self, worker):
         board = ChronossusBoard()
         board.exosuits_pool.power_up_exosuits()
@@ -27,29 +26,36 @@ class TestRecruitAction:
         with pytest.raises(PassActionsException):
             action.execute(WorkerType.ENGINEER)
 
-    @pytest.mark.parametrize("expected,populate",
-                             [(
-                              [WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER, WorkerType.SCIENTIST],
-                              []),
-                              (
-                              [WorkerType.ADMINISTRATOR, WorkerType.ENGINEER, WorkerType.SCIENTIST, WorkerType.GENIUS],
-                              [WorkerType.GENIUS]),
-                              (
-                              [WorkerType.GENIUS, WorkerType.ENGINEER, WorkerType.ADMINISTRATOR, WorkerType.SCIENTIST],
-                              [WorkerType.ADMINISTRATOR, WorkerType.SCIENTIST]),
-                              (
-                              [WorkerType.ENGINEER, WorkerType.SCIENTIST, WorkerType.ADMINISTRATOR,WorkerType.GENIUS],
-                              [WorkerType.GENIUS, WorkerType.GENIUS, WorkerType.ADMINISTRATOR]),
-                              (
-                              [WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER, WorkerType.SCIENTIST],
-                              [WorkerType.SCIENTIST, WorkerType.SCIENTIST, WorkerType.SCIENTIST]),
-                              (
-                              [WorkerType.SCIENTIST, WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER],
-                              [WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER]),
-                              (
-                              [WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.SCIENTIST, WorkerType.ENGINEER],
-                              [WorkerType.ENGINEER, WorkerType.SCIENTIST, WorkerType.ENGINEER])
-                              ])
+    @pytest.mark.parametrize(
+        "expected,populate",
+        [
+            ([WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER, WorkerType.SCIENTIST], []),
+            (
+                [WorkerType.ADMINISTRATOR, WorkerType.ENGINEER, WorkerType.SCIENTIST, WorkerType.GENIUS],
+                [WorkerType.GENIUS],
+            ),
+            (
+                [WorkerType.GENIUS, WorkerType.ENGINEER, WorkerType.ADMINISTRATOR, WorkerType.SCIENTIST],
+                [WorkerType.ADMINISTRATOR, WorkerType.SCIENTIST],
+            ),
+            (
+                [WorkerType.ENGINEER, WorkerType.SCIENTIST, WorkerType.ADMINISTRATOR, WorkerType.GENIUS],
+                [WorkerType.GENIUS, WorkerType.GENIUS, WorkerType.ADMINISTRATOR],
+            ),
+            (
+                [WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER, WorkerType.SCIENTIST],
+                [WorkerType.SCIENTIST, WorkerType.SCIENTIST, WorkerType.SCIENTIST],
+            ),
+            (
+                [WorkerType.SCIENTIST, WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER],
+                [WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.ENGINEER],
+            ),
+            (
+                [WorkerType.GENIUS, WorkerType.ADMINISTRATOR, WorkerType.SCIENTIST, WorkerType.ENGINEER],
+                [WorkerType.ENGINEER, WorkerType.SCIENTIST, WorkerType.ENGINEER],
+            ),
+        ],
+    )
     def test_get_priority(self, expected, populate):
         board = ChronossusBoard()
         action = RecruitAction(board)

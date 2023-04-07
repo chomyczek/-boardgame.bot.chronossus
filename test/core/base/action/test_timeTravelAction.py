@@ -1,8 +1,5 @@
-import pytest
-
 from src.core.base.action.timeTravelAction import TimeTravelAction
 from src.core.board.chronossusBoard import ChronossusBoard
-from src.core.util.exception import ActionFailedException
 
 
 class TestTimeTravelAction:
@@ -19,4 +16,3 @@ class TestTimeTravelAction:
         action = TimeTravelAction(board)
         action.execute()
         assert mock_failed_action.called
-

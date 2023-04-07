@@ -52,6 +52,11 @@ class TestWorkerPoolComponent:
 
     def test_get(self):
         breakthrough_component = WorkerEnumPoolComponent()
-        breakthrough_component._pool = {WorkerType.GENIUS: 1, WorkerType.SCIENTIST:1, WorkerType.ENGINEER: 1, WorkerType.ADMINISTRATOR:1}
+        breakthrough_component._pool = {
+            WorkerType.GENIUS: 1,
+            WorkerType.SCIENTIST: 1,
+            WorkerType.ENGINEER: 1,
+            WorkerType.ADMINISTRATOR: 1,
+        }
         for breakthrough in WorkerType:
             assert breakthrough_component.get()[breakthrough] == 1
