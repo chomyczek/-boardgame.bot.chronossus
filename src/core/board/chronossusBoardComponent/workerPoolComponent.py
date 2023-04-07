@@ -9,6 +9,10 @@ class WorkerEnumPoolComponent(IEnumPoolComponent, IRewardedComponent):
     """
 
     def get(self) -> dict[WorkerType, int]:
+        """
+        Get pool from component
+        :return: dict of worker types and their number
+        """
         return self._pool
 
     def __init__(self):

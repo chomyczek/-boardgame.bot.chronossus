@@ -7,6 +7,19 @@ from src.core.util.exception import ActionFailedException
 
 
 class RemoveAnomalyAction(IAction, IPriority):
+    """
+    Each time “Remove Anomaly” is selected,
+    it discards any 2 Resource cubes. Choose
+    Resources it has the most of; if tied, the
+    order of priority is:
+    Titanium > Gold > Uranium > Neutronium
+    1 Neutronium cube is equal to 2 non-Neutronium cubes
+    when calculating priority and discarding. Then, if it has the
+    Resources to discard, it removes 1 Anomaly. If it doesn’t
+    have an Anomaly or the Resources to remove one, it takes
+    1 VP instead as usual for Failed Actions
+    """
+
     _board: ChronossusBoard
     _failedAction: FailedAction
 
@@ -15,6 +28,9 @@ class RemoveAnomalyAction(IAction, IPriority):
         self._failedAction = FailedAction(chronossus_board)
 
     def execute(self) -> None:
+        """
+        Remove anomaly action
+        """
         resources = self.get_priority()
         try:
             self._board.resources_pool.remove(resources)
@@ -29,6 +45,14 @@ class RemoveAnomalyAction(IAction, IPriority):
             self._failedAction.execute()
 
     def get_priority(self, decrease_priority: list[ResourceType] = None) -> list[ResourceType]:
+        """
+        Choose Resources it has the most of. If tied, the
+        order of priority is:
+        Titanium > Gold > Uranium > Neutronium
+        1 Neutronium cube is equal to 2 non-Neutronium cubes
+        :param decrease_priority: list of resources to decrease priority
+        :return: List of resources types ordered by priority
+        """
         priority = []
         resource_pool_copy = self._board.resources_pool.get().copy()
         if decrease_priority is not None:

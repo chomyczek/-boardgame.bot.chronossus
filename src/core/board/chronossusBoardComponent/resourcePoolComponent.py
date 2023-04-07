@@ -10,6 +10,10 @@ class ResourceEnumPoolComponent(IEnumPoolComponent, IRewardedComponent):
     """
 
     def add(self, resource: ResourceType):
+        """
+        Add resource to component
+        :param resource: Resource type to add
+        """
         super().add(resource)
         super().check_for_completed_set()
 
@@ -35,4 +39,8 @@ class ResourceEnumPoolComponent(IEnumPoolComponent, IRewardedComponent):
         return self._score
 
     def get(self) -> dict[ResourceType, int]:
+        """
+        Get pool from component
+        :return: dict of resource type and their number
+        """
         return self._pool

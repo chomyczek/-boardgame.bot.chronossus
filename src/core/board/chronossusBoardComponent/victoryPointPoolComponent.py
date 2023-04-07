@@ -12,6 +12,10 @@ class VictoryPointComponent(IRewardedComponent):
         self._score = 0
 
     def add(self, vp: int) -> None:
+        """
+        Add victory points to this component
+        :param vp: Victory points to add
+        """
         self._score += vp
 
     def get_victory_points(self) -> int:

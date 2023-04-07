@@ -6,6 +6,26 @@ from src.core.util.exception import ActionFailedException
 
 
 class ConstructAction(IAction):
+    """
+    Each of the Chronossus’s Construct Actions is for a specific
+    building type (or Superproject). When using the Construct
+    Action, the Chronossus always picks the building with the
+    higher VP value. If tied, it takes the one in the secondary
+    stack. If it already has 3 buildings of the desired type, it takes
+    nothing (but it still places an Exosuit to block a Construct
+    Action space, and takes 1 VP, as usual, for Failed Actions).
+    When Constructing a Superproject, the Chronossus first
+    discards a Breakthrough (of any shape or icon; if it has
+    multiples, it discards one of whichever it has the most
+    of—choose one randomly if tied). Then, it takes the highest VP,
+     face-up Superproject from the Present or any past Era (oldest if tied).
+    If “Construct Superproject” is rolled and the Chronossus
+    does not have a Breakthrough to discard, or it already has 3
+    Superprojects, it does nothing (but it still places an Exosuit
+    to block a Construct Action space and takes the 1 VP as
+    usual for Failed Actions)
+    """
+
     _construction_type: BuildingType
     _board: ChronossusBoard
     _failedAction: FailedAction
@@ -16,6 +36,10 @@ class ConstructAction(IAction):
         self._failedAction = FailedAction(chronossus_board)
 
     def execute(self, vp: int) -> None:
+        """
+        Execute construct action
+        :param vp: Victory points for taken tile
+        """
         try:
             self._board.exosuits_pool.place_exosuit()
             if self._construction_type == BuildingType.SUPER_PROJECT:

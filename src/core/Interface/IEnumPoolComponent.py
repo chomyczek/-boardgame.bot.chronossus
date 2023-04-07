@@ -30,6 +30,10 @@ class IEnumPoolComponent(ABC):
 
     @abstractmethod
     def get(self) -> dict[enum, int] | int:
+        """
+        Get pool from component
+        :return: dict of enums and their number
+        """
         raise NotImplementedError()
 
     def check_for_completed_set(self) -> None:

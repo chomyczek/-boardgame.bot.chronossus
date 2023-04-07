@@ -2,10 +2,15 @@ from src.core.base.action.failedAction import FailedAction
 from src.core.base.component.researchShapeDie import ResearchShapeDie
 from src.core.board.chronossusBoard import ChronossusBoard
 from src.core.interface.IAction import IAction
-from src.core.util.exception import ActionFailedException
 
 
 class ResearchAction(IAction):
+    """
+    When using the Research Action, only roll the
+    shape die, taking any Breakthrough of the rolled
+    shape.
+    """
+
     _die: ResearchShapeDie
     _failedAction: FailedAction
 
@@ -15,6 +20,9 @@ class ResearchAction(IAction):
         self._failedAction = FailedAction(chronossus_board)
 
     def execute(self) -> None:
+        """
+        Execute research action
+        """
         self._board.exosuits_pool.place_exosuit()
         shape = self._die.roll()
         self._board.breakthroughs_pool.add(shape)

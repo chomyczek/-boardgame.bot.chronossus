@@ -10,9 +10,17 @@ class BreakthroughEnumPoolComponent(IEnumPoolComponent, IRewardedComponent):
     """
 
     def get(self) -> dict[BreakthroughType, int]:
+        """
+        Get pool from component
+        :return: dict of breakthrough and their number
+        """
         return self._pool
 
     def add(self, breakthrough: BreakthroughType):
+        """
+        Add breakthrough to pool
+        :param breakthrough: a breakthrough to add
+        """
         super().add(breakthrough)
 
     def __init__(self):
