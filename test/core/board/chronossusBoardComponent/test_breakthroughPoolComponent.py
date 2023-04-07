@@ -1,7 +1,7 @@
 import pytest
 
 from src.core.base.type import BreakthroughType
-from src.core.board.chronossusBoardComponent.breakthroughPoolComponent import BreakthroughPoolComponent
+from src.core.board.chronossusBoardComponent.breakthroughPoolComponent import BreakthroughEnumPoolComponent
 from src.core.util.exception import ActionFailedException
 
 
@@ -10,7 +10,7 @@ class TestBreakthroughPoolComponent:
         "breakthrough_type", [BreakthroughType.CIRCLE, BreakthroughType.SQUARE, BreakthroughType.TRIANGLE]
     )
     def test_add(self, breakthrough_type):
-        breakthrough_component = BreakthroughPoolComponent()
+        breakthrough_component = BreakthroughEnumPoolComponent()
         breakthrough_component.add(breakthrough_type)
         for breakthrough in BreakthroughType:
             expected = 0
@@ -18,8 +18,18 @@ class TestBreakthroughPoolComponent:
                 expected = 1
             assert breakthrough_component._pool[breakthrough] == expected
 
+    def test_get(self):
+        breakthrough_component = BreakthroughEnumPoolComponent()
+        breakthrough_component._pool = {
+            BreakthroughType.CIRCLE: 1,
+            BreakthroughType.SQUARE: 1,
+            BreakthroughType.TRIANGLE: 1,
+        }
+        for breakthrough in BreakthroughType:
+            assert breakthrough_component.get()[breakthrough] == 1
+
     def test_remove_any_each_type_equal(self):
-        breakthrough_component = BreakthroughPoolComponent()
+        breakthrough_component = BreakthroughEnumPoolComponent()
         breakthrough_component._pool = {
             BreakthroughType.CIRCLE: 1,
             BreakthroughType.SQUARE: 1,
@@ -29,7 +39,7 @@ class TestBreakthroughPoolComponent:
         assert sum(breakthrough_component._pool.values()) == 2
 
     def test_remove_any_one_has_more(self):
-        breakthrough_component = BreakthroughPoolComponent()
+        breakthrough_component = BreakthroughEnumPoolComponent()
         breakthrough_component._pool = {
             BreakthroughType.CIRCLE: 2,
             BreakthroughType.SQUARE: 1,
@@ -42,7 +52,7 @@ class TestBreakthroughPoolComponent:
         assert breakthrough_component._pool[BreakthroughType.TRIANGLE] == 1
 
     def test_remove_any_empty_pool(self):
-        breakthrough_component = BreakthroughPoolComponent()
+        breakthrough_component = BreakthroughEnumPoolComponent()
         with pytest.raises(ActionFailedException) as e:
             breakthrough_component.remove_any()
         assert str(e.value) == "There is no breakthroughs."
@@ -55,6 +65,6 @@ class TestBreakthroughPoolComponent:
         ],
     )
     def test_get_victory_points(self, breakthrough_pool, expected_points):
-        breakthrough_component = BreakthroughPoolComponent()
+        breakthrough_component = BreakthroughEnumPoolComponent()
         breakthrough_component._pool = breakthrough_pool
         assert breakthrough_component.get_victory_points() == expected_points

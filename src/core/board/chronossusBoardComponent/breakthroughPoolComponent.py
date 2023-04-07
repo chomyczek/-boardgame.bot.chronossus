@@ -1,15 +1,26 @@
 from src.core.base.type import BreakthroughType
-from src.core.interface.IPoolComponent import IPoolComponent
+from src.core.interface.IEnumPoolComponent import IEnumPoolComponent
 from src.core.interface.IRewardedComponent import IRewardedComponent
 from src.core.util.exception import ActionFailedException
 
 
-class BreakthroughPoolComponent(IPoolComponent, IRewardedComponent):
+class BreakthroughEnumPoolComponent(IEnumPoolComponent, IRewardedComponent):
     """
     Breakthrough pool component for chronossus board
     """
 
+    def get(self) -> dict[BreakthroughType, int]:
+        """
+        Get pool from component
+        :return: dict of breakthrough and their number
+        """
+        return self._pool
+
     def add(self, breakthrough: BreakthroughType):
+        """
+        Add breakthrough to pool
+        :param breakthrough: a breakthrough to add
+        """
         super().add(breakthrough)
 
     def __init__(self):

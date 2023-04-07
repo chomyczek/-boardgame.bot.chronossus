@@ -1,12 +1,19 @@
 from src.core.base.type import WorkerType
-from src.core.interface.IPoolComponent import IPoolComponent
+from src.core.interface.IEnumPoolComponent import IEnumPoolComponent
 from src.core.interface.IRewardedComponent import IRewardedComponent
 
 
-class WorkerPoolComponent(IPoolComponent, IRewardedComponent):
+class WorkerEnumPoolComponent(IEnumPoolComponent, IRewardedComponent):
     """
     Worker pool component for chronossus board
     """
+
+    def get(self) -> dict[WorkerType, int]:
+        """
+        Get pool from component
+        :return: dict of worker types and their number
+        """
+        return self._pool
 
     def __init__(self):
         super().__init__(WorkerType)

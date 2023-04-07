@@ -1,10 +1,12 @@
-from src.core.board.chronossusBoardComponent.breakthroughPoolComponent import BreakthroughPoolComponent
+from src.core.board.chronossusBoardComponent.breakthroughPoolComponent import BreakthroughEnumPoolComponent
 from src.core.board.chronossusBoardComponent.buildingPoolComponent import BuildingPoolComponent
 from src.core.board.chronossusBoardComponent.exosuitPoolComponent import ExosuitPoolComponent
 from src.core.board.chronossusBoardComponent.paradoxTrackerComponent import ParadoxTrackerComponent
-from src.core.board.chronossusBoardComponent.resourcePoolComponent import ResourcePoolComponent
+from src.core.board.chronossusBoardComponent.resourcePoolComponent import ResourceEnumPoolComponent
 from src.core.board.chronossusBoardComponent.timeTravelTrackerComponent import TimeTravelTrackerComponent
-from src.core.board.chronossusBoardComponent.workerPoolComponent import WorkerPoolComponent
+from src.core.board.chronossusBoardComponent.victoryPointPoolComponent import VictoryPointComponent
+from src.core.board.chronossusBoardComponent.warpTokenPoolComponent import WarpTokenPoolComponent
+from src.core.board.chronossusBoardComponent.workerPoolComponent import WorkerEnumPoolComponent
 
 
 class ChronossusBoard:
@@ -12,19 +14,24 @@ class ChronossusBoard:
     Chronossus board class.
     """
 
-    _actions = None
-    _resources_pool: ResourcePoolComponent
-    _workers_pool: WorkerPoolComponent
-    _exosuits_pool: ExosuitPoolComponent
-    _paradox_track: ParadoxTrackerComponent
-    _time_travel_track: TimeTravelTrackerComponent
-    _breakthroughs_pool: BreakthroughPoolComponent
-    _building_pool: BuildingPoolComponent
+    _actions_tracker = None
+    resources_pool: ResourceEnumPoolComponent
+    workers_pool: WorkerEnumPoolComponent
+    exosuits_pool: ExosuitPoolComponent
+    paradox_track: ParadoxTrackerComponent
+    time_travel_track: TimeTravelTrackerComponent
+    breakthroughs_pool: BreakthroughEnumPoolComponent
+    building_pool: BuildingPoolComponent
+    victory_points_pool: VictoryPointComponent
+    warp_token_pool: WarpTokenPoolComponent
 
     def __init__(self):
-        self._building_pool = BuildingPoolComponent()
-        self._breakthroughs_pool = BreakthroughPoolComponent()
-        self._time_travel_track = TimeTravelTrackerComponent()
-        self._paradox_track = ParadoxTrackerComponent()
-        self._exosuits_pool = ExosuitPoolComponent()
-        self._resources_pool = ResourcePoolComponent()
+        self.building_pool = BuildingPoolComponent()
+        self.breakthroughs_pool = BreakthroughEnumPoolComponent()
+        self.time_travel_track = TimeTravelTrackerComponent()
+        self.paradox_track = ParadoxTrackerComponent()
+        self.exosuits_pool = ExosuitPoolComponent()
+        self.resources_pool = ResourceEnumPoolComponent()
+        self.workers_pool = WorkerEnumPoolComponent()
+        self.victory_points_pool = VictoryPointComponent()
+        self.warp_token_pool = WarpTokenPoolComponent()
