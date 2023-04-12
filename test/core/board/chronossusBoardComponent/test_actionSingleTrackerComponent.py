@@ -4,7 +4,7 @@ from src.core.base.type import ActionTileType
 from src.core.board.chronossusBoardComponent.actionSingleTrackerComponent import ActionSingleTrackerComponent
 
 
-class TestParadoxTrackerComponent:
+class TestActionSingleTrackerComponent:
 
     @fixture
     def action_single_tracker_component(self):

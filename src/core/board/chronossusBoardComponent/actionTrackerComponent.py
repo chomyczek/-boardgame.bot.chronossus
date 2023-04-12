@@ -74,7 +74,7 @@ class ActionTrackerComponent:
 
         return self._trackers[tracker].get_current_action()
 
-    def move_action(
+    def move(
             self,
             tracker: int
     ) -> None:
