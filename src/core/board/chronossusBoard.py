@@ -1,3 +1,4 @@
+from src.core.board.chronossusBoardComponent.actionTrackerComponent import ActionTrackerComponent
 from src.core.board.chronossusBoardComponent.breakthroughPoolComponent import BreakthroughEnumPoolComponent
 from src.core.board.chronossusBoardComponent.buildingPoolComponent import BuildingPoolComponent
 from src.core.board.chronossusBoardComponent.exosuitPoolComponent import ExosuitPoolComponent
@@ -14,7 +15,7 @@ class ChronossusBoard:
     Chronossus board class.
     """
 
-    _actions_tracker = None
+    actions_tracker: ActionTrackerComponent
     resources_pool: ResourceEnumPoolComponent
     workers_pool: WorkerEnumPoolComponent
     exosuits_pool: ExosuitPoolComponent
@@ -35,3 +36,4 @@ class ChronossusBoard:
         self.workers_pool = WorkerEnumPoolComponent()
         self.victory_points_pool = VictoryPointComponent()
         self.warp_token_pool = WarpTokenPoolComponent()
+        self.actions_tracker = ActionTrackerComponent()

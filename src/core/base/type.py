@@ -44,3 +44,24 @@ class ResourceType(Enum):
     URANIUM = "Uranium"
     GOLD = "Gold"
     TITANIUM = "Titanium"
+
+
+class ActionTileType(Enum):
+    """
+    Enum class for action tiles types
+    """
+
+    CONSTRUCT_FACTORY = "construct factory"
+    CONSTRUCT_LAB = "construct laboratory"
+    CONSTRUCT_LIFE_SUPPORT = "construct life support"
+    CONSTRUCT_POWER_PLANT = "construct power plant"
+    CONSTRUCT_SUPER_PROJECT = "construct super project"
+    MINE = "mine"
+    RECRUIT_GENIUS_OR_RESEARCH = "recruit genius or do research"
+    RECRUIT = "recruit"
+    REMOVE_ANOMALY = "remove anomaly"
+    RESEARCH = "do research"
+    TIME_TRAVEL = "time travel"
+    C01A = "reboot"
+    C02A = "score"
+    C03A = "energy pack"
