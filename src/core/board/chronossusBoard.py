@@ -14,7 +14,7 @@ class ChronossusBoard:
     Chronossus board class.
     """
 
-    _actions_tracker = None
+    actions_tracker: ActionTrackerComponent
     resources_pool: ResourceEnumPoolComponent
     workers_pool: WorkerEnumPoolComponent
     exosuits_pool: ExosuitPoolComponent
@@ -35,3 +35,4 @@ class ChronossusBoard:
         self.workers_pool = WorkerEnumPoolComponent()
         self.victory_points_pool = VictoryPointComponent()
         self.warp_token_pool = WarpTokenPoolComponent()
+        self.actions_tracker = ActionTrackerComponent()
