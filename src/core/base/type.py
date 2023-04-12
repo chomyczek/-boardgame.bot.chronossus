@@ -50,6 +50,7 @@ class ActionTileType(Enum):
     """
     Enum class for action tiles types
     """
+
     CONSTRUCT_FACTORY = "construct factory"
     CONSTRUCT_LAB = "construct laboratory"
     CONSTRUCT_LIFE_SUPPORT = "construct life support"

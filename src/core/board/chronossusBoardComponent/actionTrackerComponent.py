@@ -26,7 +26,7 @@ class ActionTrackerComponent:
             ActionTileType.MINE,
             ActionTileType.C01A,
             ActionTileType.RECRUIT,
-            ActionTileType.RESEARCH
+            ActionTileType.RESEARCH,
         ]
         return ActionSingleTrackerComponent(actions)
 
@@ -37,7 +37,7 @@ class ActionTrackerComponent:
             ActionTileType.TIME_TRAVEL,
             ActionTileType.C02A,
             ActionTileType.CONSTRUCT_SUPER_PROJECT,
-            ActionTileType.REMOVE_ANOMALY
+            ActionTileType.REMOVE_ANOMALY,
         ]
         return ActionSingleTrackerComponent(actions)
 
@@ -48,7 +48,7 @@ class ActionTrackerComponent:
             ActionTileType.C01A,
             ActionTileType.MINE,
             ActionTileType.CONSTRUCT_LAB,
-            ActionTileType.RECRUIT_GENIUS_OR_RESEARCH
+            ActionTileType.RECRUIT_GENIUS_OR_RESEARCH,
         ]
         return ActionSingleTrackerComponent(actions)
 
@@ -62,10 +62,7 @@ class ActionTrackerComponent:
         ]
         return ActionSingleTrackerComponent(actions)
 
-    def get_action(
-            self,
-            tracker: int
-    ) -> ActionTileType:
+    def get_action(self, tracker: int) -> ActionTileType:
         """
         Get current action type of provided tracker
         :param tracker: Type of action tracker
@@ -74,10 +71,7 @@ class ActionTrackerComponent:
 
         return self._trackers[tracker].get_current_action()
 
-    def move(
-            self,
-            tracker: int
-    ) -> None:
+    def move(self, tracker: int) -> None:
         """
         Move action on provided tracker
         :param tracker: Type of action tracker

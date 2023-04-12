@@ -5,7 +5,6 @@ from src.core.board.chronossusBoardComponent.actionSingleTrackerComponent import
 
 
 class TestActionSingleTrackerComponent:
-
     @fixture
     def action_single_tracker_component(self):
         actions = [ActionTileType.CONSTRUCT_LAB, ActionTileType.C01A]
