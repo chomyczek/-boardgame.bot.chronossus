@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from src.core.base.type import ActionTileType
-from src.core.board.chronossusBoardComponent.singleActionTrackerComponent import ActionSingleTrackerComponent
+from src.core.board.chronossusBoardComponent.actionSingleTrackerComponent import ActionSingleTrackerComponent
 
 
 class ActionTrackerComponent:
