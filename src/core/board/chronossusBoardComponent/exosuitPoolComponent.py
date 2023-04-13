@@ -9,7 +9,7 @@ class ExosuitPoolComponent:
     Exosuit pool component for chronossus board
     """
 
-    rule_num_of_draws = 3
+    rule_num_of_draws: int = 3
     rule_max_exosuits: int
     rule_guaranteed_exosuits: int
     _energy_cores_pool: list[EnergyCoreToken]

@@ -2,6 +2,7 @@ import itertools
 
 import pytest
 
+from src.core.board.chronossusBoardComponent import exosuitPoolComponent
 from src.core.board.chronossusBoardComponent.exosuitPoolComponent import ExosuitPoolComponent
 from src.core.util.exception import PassActionsException
 
@@ -49,7 +50,7 @@ class TestExosuitPoolComponent:
 
     @pytest.mark.parametrize("trigger_impact", [True, False])
     def test_power_up_exosuits_only_normal_cores(self, trigger_impact, mocker):
-        mock_shuffle = mocker.patch("src.core.board.chronossusBoardComponent.exosuitPoolComponent.shuffle")
+        mock_shuffle = mocker.patch.object(exosuitPoolComponent, "shuffle")
         exosuit_pool_component = ExosuitPoolComponent()
         exosuit_pool_component._energy_cores_pool = []
         for i in range(10):
@@ -66,7 +67,7 @@ class TestExosuitPoolComponent:
     )
     def test_power_up_exosuits_exhausted_drawn(self, trigger_impact, exhausted_count, mocker):
         exhausted_not_drawn = 2
-        mocker.patch("src.core.board.chronossusBoardComponent.exosuitPoolComponent.shuffle")
+        mocker.patch.object(exosuitPoolComponent, "shuffle")
         exosuit_pool_component = ExosuitPoolComponent()
         exosuit_pool_component._energy_cores_pool = []
         for i in range(exhausted_not_drawn):
