@@ -1,4 +1,3 @@
-from src.core.base.action.failedAction import FailedAction
 from src.core.base.type import ResourceType
 from src.core.board.chronossusBoard import ChronossusBoard
 from src.core.interface.IAction import IAction
@@ -20,11 +19,9 @@ class MineResourceAction(IAction, IPriority):
     """
 
     _board: ChronossusBoard
-    _failedAction: FailedAction
 
     def __init__(self, chronossus_board: ChronossusBoard):
         self._board = chronossus_board
-        self._failedAction = FailedAction(chronossus_board)
 
     def get_priority(self) -> list[ResourceType]:
         """

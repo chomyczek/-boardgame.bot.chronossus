@@ -1,4 +1,3 @@
-from src.core.base.action.failedAction import FailedAction
 from src.core.base.type import ResourceType
 from src.core.board.chronossusBoard import ChronossusBoard
 from src.core.interface.IAction import IAction
@@ -21,28 +20,22 @@ class RemoveAnomalyAction(IAction, IPriority):
     """
 
     _board: ChronossusBoard
-    _failedAction: FailedAction
 
     def __init__(self, chronossus_board: ChronossusBoard):
         self._board = chronossus_board
-        self._failedAction = FailedAction(chronossus_board)
 
     def execute(self) -> None:
         """
         Remove anomaly action
         """
         resources = self.get_priority()
-        try:
-            self._board.resources_pool.remove(resources)
-        except ActionFailedException:
-            self._failedAction.execute()
-            return
+        self._board.resources_pool.remove(resources)
         try:
             self._board.building_pool.remove_anomaly()
         except ActionFailedException:
             for resource in resources:
                 self._board.resources_pool.add(resource)
-            self._failedAction.execute()
+            raise
 
     def get_priority(self, decrease_priority: list[ResourceType] = None) -> list[ResourceType]:
         """

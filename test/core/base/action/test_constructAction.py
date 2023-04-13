@@ -4,7 +4,7 @@ from src.core.base.action.constructAction import ConstructAction
 from src.core.base.component.buildingTile import BuildingTile
 from src.core.base.type import BreakthroughType, BuildingType
 from src.core.board.chronossusBoard import ChronossusBoard
-from src.core.util.exception import PassActionsException
+from src.core.util.exception import ActionFailedException, PassActionsException
 
 
 class TestConstructAction:
@@ -48,17 +48,17 @@ class TestConstructAction:
             action.execute(vp)
         assert board.building_pool.get_victory_points() == 0
 
-    def test_execute_failed_no_breakthroughs(self, powered_up_board, mocker):
-        mock_failed_action = mocker.patch("src.core.base.action.failedAction.FailedAction.execute")
+    def test_execute_failed_no_breakthroughs(self, powered_up_board):
         vp = 4
         action = ConstructAction(powered_up_board, BuildingType.SUPER_PROJECT)
-        action.execute(vp)
-        assert mock_failed_action.called
+        with pytest.raises(ActionFailedException) as e:
+            action.execute(vp)
+        assert str(e.value) == "There is no breakthroughs."
         assert powered_up_board.building_pool.get_victory_points() == 0
 
     @pytest.mark.parametrize("construction_type", [building for building in BuildingType])
-    def test_execute_failed_stack_full(self, construction_type, powered_up_board, mocker):
-        mock_failed_action = mocker.patch("src.core.base.action.failedAction.FailedAction.execute")
+    def test_execute_failed_stack_full(self, construction_type, powered_up_board):
+        powered_up_board.breakthroughs_pool.add(BreakthroughType.TRIANGLE)
         full_stack_mock = [
             BuildingTile(construction_type, 1) for i in range(powered_up_board.building_pool.RULE_MAX_BUILDINGS_IN_POOL)
         ]
@@ -66,8 +66,9 @@ class TestConstructAction:
         action = ConstructAction(powered_up_board, construction_type)
 
         powered_up_board.building_pool._pool[construction_type] = full_stack_mock
-        action.execute(vp)
-        assert mock_failed_action.called
+        with pytest.raises(ActionFailedException) as e:
+            action.execute(vp)
+        assert str(e.value) == f"Pool of {construction_type.value} is already full."
         assert (
             powered_up_board.building_pool.get_victory_points()
             == powered_up_board.building_pool.RULE_MAX_BUILDINGS_IN_POOL
