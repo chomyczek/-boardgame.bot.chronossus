@@ -16,7 +16,7 @@ class TestMineResourceAction:
             [ResourceType.TITANIUM, ResourceType.TITANIUM],
         ],
     )
-    def test_execute(self, resources: ResourceType):
+    def test_execute(self, resources: list[ResourceType]):
         board = ChronossusBoard()
         board.exosuits_pool.power_up_exosuits()
         action = MineResourceAction(board)

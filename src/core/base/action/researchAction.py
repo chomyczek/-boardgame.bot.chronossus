@@ -1,4 +1,4 @@
-from src.core.base.component.researchShapeDie import ResearchShapeDie
+from src.core.base.component.die.researchShapeDie import ResearchShapeDie
 from src.core.board.chronossusBoard import ChronossusBoard
 from src.core.interface.IAction import IAction
 
