@@ -1,7 +1,6 @@
 from src.core.base.type import BuildingType
 from src.core.board.chronossusBoard import ChronossusBoard
 from src.core.interface.IAction import IAction
-from src.core.util.exception import ActionFailedException
 
 
 class ConstructAction(IAction):
